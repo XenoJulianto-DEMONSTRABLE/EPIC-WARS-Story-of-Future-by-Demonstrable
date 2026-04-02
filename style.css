@@ -1,0 +1,602 @@
+﻿
+.story-title {
+    animation: glowTitle 2s infinite alternate;
+}
+
+@keyframes glowTitle {
+    from {
+        text-shadow: 0 0 10px cyan;
+    }
+
+    to {
+        text-shadow: 0 0 30px cyan;
+    }
+}
+
+.era-text:hover {
+    color: white;
+    text-shadow: 0 0 10px cyan;
+}
+
+.era-card {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeUp 1s forwards;
+}
+
+    .era-card:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .era-card:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    .era-card:nth-child(5) {
+        animation-delay: 0.6s;
+    }
+
+    .era-card:nth-child(7) {
+        animation-delay: 0.8s;
+    }
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rainbowBorder {
+    0% {
+        border-color: red;
+        box-shadow: 0 0 20px red;
+    }
+
+    17% {
+        border-color: orange;
+        box-shadow: 0 0 20px orange;
+    }
+
+    33% {
+        border-color: yellow;
+        box-shadow: 0 0 20px yellow;
+    }
+
+    50% {
+        border-color: green;
+        box-shadow: 0 0 20px green;
+    }
+
+    67% {
+        border-color: blue;
+        box-shadow: 0 0 20px blue;
+    }
+
+    83% {
+        border-color: mediumpurple;
+        box-shadow: 0 0 20px mediumpurple;
+    }
+
+    100% {
+        border-color: violet;
+        box-shadow: 0 0 20px violet;
+    }
+}
+
+.rainbow-img {
+    border: 3px solid red;
+    border-radius: 15px;
+    animation: rainbowBorder 3s linear infinite;
+}
+
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at center, #0b0b2a, #000);
+    color: white;
+    overflow-x: hidden;
+}
+
+    /* GALAXY BACKGROUND */
+    body::before {
+        content: "";
+        position: fixed;
+        width: 200%;
+        height: 200%;
+        background: url("https://www.transparenttextures.com/patterns/stardust.png");
+        animation: galaxyMove 60s linear infinite;
+        opacity: 0.3;
+        z-index: -1;
+    }
+
+@keyframes galaxyMove {
+    0% {
+        transform: translate(0,0);
+    }
+
+    100% {
+        transform: translate(-500px,-500px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideMenu {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+/* SPLASH SCREEN */
+
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 4s forwards;
+}
+
+    #splash-screen h1 {
+        color: white;
+        font-size: 30px;
+        letter-spacing: 4px;
+        opacity: 0.8;
+    }
+
+    #splash-screen h2 {
+        color: darkred;
+        font-size: 50px;
+        letter-spacing: 6px;
+        text-shadow: 0 0 20px darkred;
+    }
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    padding-bottom: 80px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: black;
+    margin-top: 20px;
+}
+
+
+
+.login-container {
+    min-height: 100vh;
+    padding-bottom: 100px;
+}
+
+.login-box {
+    width: 350px;
+    padding: 40px;
+    background: rgba(0, 0, 30, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 0 30px #381eff;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.login-sub {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+    .login-box input:focus {
+        box-shadow: 0 0 10px #381eff;
+    }
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #381eff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px #381eff;
+}
+
+    .login-box button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px #381eff;
+    }
+
+.social-login {
+    display: flex;
+    gap: 10px;
+}
+    .social-login button {
+        padding: 10px;
+        background: #222;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+.account {
+    position: relative;
+    cursor: pointer;
+}
+
+.avatar-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.avatar {
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #381eff;
+}
+
+.online {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background: lime;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+    .avatar:hover {
+        transform: scale(1.1);
+    }
+
+    .avatar::after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background: lime;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border: 2px solid black;
+    }
+.account {
+    position: relative;
+    cursor: pointer;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #381eff;
+}
+
+    .dropdown button {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        background: transparent;
+        border: 1px solid #381eff;
+        color: #381eff;
+        padding: 8px;
+        border-radius: 5px;
+    }
+
+        .dropdown button:hover {
+            background: #381eff;
+            color: black;
+        }
+.account:hover .dropdown {
+    display: block;
+}
+
+.characters-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.character-card {
+    background: linear-gradient(145deg, #0a0a1f, #111133);
+    border: 1px solid #381eff;
+    border-radius: 15px;
+    width: 260px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px #381eff;
+    transition: 0.4s;
+}
+
+    .character-card:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 40px #381eff;
+    }
+
+    .character-card img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+@keyframes rotateGlow {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.character-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 40px #381eff, 0 0 80px #381eff;
+}
+
+.character-card img {
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 25px cyan;
+}
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: black;
+}
+
+.game-menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    animation: slideMenu 1s ease forwards;
+}
+
+    .game-menu a {
+        color: #381eff;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: 2px solid #381eff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #381eff;
+        transition: 0.3s;
+    }
+
+        .game-menu a:hover {
+            background: #381eff;
+            color: black;
+            box-shadow: 0 0 20px #381eff, 0 0 40px #381eff;
+            transform: scale(1.1);
+        }
+
+.title {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 40px;
+    letter-spacing: 3px;
+}
+
+
+
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.loading-bar::before {
+    box-shadow: 0 0 10px #381eff, 0 0 20px #381eff;
+}
+
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 5px;
+    background: #111;
+    overflow: hidden;
+    position: relative; /* 🔥 INI FIX UTAMA */
+}
+    .loading-bar::before {
+        content: "";
+        width: 50%;
+        height: 100%;
+        background: #381eff;
+        position: absolute;
+        animation: loading 2s linear infinite;
+    }
+
+@keyframes loading {
+    from {
+        left: -50%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+
+header{
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+    background:black;
+}
+
+nav a{
+    color:white;
+    margin:10px;
+    text-decoration:none;
+}
+
+.hero{
+    text-align:center;
+    padding:120px 20px;
+    background:linear-gradient(black,#111);
+}
+
+button {
+    padding: 12px 30px;
+    background: #381eff;
+    border: none;
+    color: black;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #381eff, 0 0 20px #381eff, 0 0 40px #381eff;
+    transition: 0.3s;
+}
+
+    button:hover {
+        background: #381eff;
+        box-shadow: 0 0 20px #381eff, 0 0 40px #381eff, 0 0 80px #381eff;
+        transform: scale(1.1);
+    }
+
+.download-btn {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 18px;
+    background: #381eff;
+    border: none;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #381eff, 0 0 30px #381eff;
+    transition: 0.3s;
+}
+
+    .download-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 30px #381eff, 0 0 60px #381eff;
+    }
+
+
+.about{
+    padding:350px;
+    text-align:center;
+}
+
+
+footer {
+    text-align: center;
+    padding: 70px;
+    background: black;
+    margin-top: 20px;
+}
