@@ -1,11 +1,300 @@
-﻿<!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Sovarion - EPIC WARS:Story of Future</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RESM87LKGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-RESM87LKGB');
+    </script>
+
+    <style>
+        .char-page {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        /* LEFT — Character Image */
+        .char-left {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+
+            .char-left img {
+                width: 100%;
+                max-width: 350px;
+                border-radius: 15px;
+                border: 2px solid #00ff88;
+                box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+                animation: charGlow 3s ease-in-out infinite alternate;
+            }
+
+        @keyframes charGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 50px rgba(0, 255, 136, 0.9);
+            }
+        }
+
+        .char-moral {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 20px;
+            border: 1px solid #00ff88;
+            border-radius: 20px;
+            color: #00ff88;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* RIGHT — Character Info */
+        .char-right {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .char-name {
+            font-size: 3em;
+            color: #00ff88;
+            text-shadow: 0 0 20px #00ff88;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .char-title {
+            color: #aaa;
+            font-size: 1em;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .char-divider {
+            border: none;
+            border-top: 1px solid rgba(0, 255, 136, 0.3);
+            margin: 20px 0;
+        }
+
+        .char-desc {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 0.95em;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* SKILLS */
+        .skills-title {
+            color: #00ff88;
+            font-size: 1em;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .skill-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            transition: 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+            .skill-card:hover {
+                border-color: #00ff88;
+                box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+                transform: translateY(-3px);
+            }
+
+            .skill-card.ultimate {
+                grid-column: span 2;
+                border-color: rgba(255, 200, 0, 0.5);
+            }
+
+                .skill-card.ultimate:hover {
+                    border-color: #ffcc00;
+                    box-shadow: 0 0 15px rgba(255, 200, 0, 0.4);
+                }
+
+        .skill-name {
+            color: #00ff88;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .skill-card.ultimate .skill-name {
+            color: #ffcc00;
+        }
+
+        .skill-desc {
+            color: #aaa;
+            font-size: 0.75em;
+            line-height: 1.5;
+        }
+
+        /* WEAPON */
+        .weapon-box {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .weapon-title {
+            color: #00ff88;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .weapon-name {
+            color: white;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .weapon-desc {
+            color: #aaa;
+            font-size: 0.8em;
+            line-height: 1.6;
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            border-radius: 25px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            margin-bottom: 30px;
+        }
+
+            .back-btn:hover {
+                background: #00ff88;
+                color: black;
+            }
+    </style>
 </head>
+
 <body>
+
+    <nav>
+        <a href="index.html">
+            <img src="HOME-icon.png" alt="HOME"
+                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+        </a>
+        <a href="characters.html">
+            <img src="CHARACTERS-icon.png" alt="CHARACTERS"
+                 style="width:150px;height:150px;border:none;animation:none;box-shadow:none;">
+        </a>
+        <a href="story.html">
+            <img src="STORY-icon.png" alt="STORY"
+                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+        </a>
+        <a href="login.html">
+            <img src="LOGIN-icon.png" alt="LOGIN"
+                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+        </a>
+    </nav>
+
+    <div class="char-page">
+
+        <!-- LEFT -->
+        <div class="char-left">
+            <img src="SOVARION.png" alt="Sovarion">
+            <div class="char-moral">⚖️ LAWFUL GOOD</div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="char-right">
+
+            <a href="characters.html" class="back-btn">← Back to Characters</a>
+
+            <h1 class="char-name">SOVARION</h1>
+            <p class="char-title">— Guardian of the Multiverse —</p>
+
+            <hr class="char-divider">
+
+            <p class="char-desc">
+                An ordinary human — yet with intelligence and technology that made even cosmic entities think twice.
+                Sovarion is calm, wise, and fights only when necessary.
+                His advanced technology has earned him the title of a demigod,
+                yet he remains nothing more than a brilliant human being.
+            </p>
+
+            <!-- WEAPON -->
+            <div class="weapon-box">
+                <div class="weapon-title">⚔️ WEAPON</div>
+                <div class="weapon-name">ASTRAEBLADE</div>
+                <div class="weapon-desc">
+                    A hunter sword radiating green cosmic energy. Forged from the core of dying stars,
+                    Astraeblade is an extension of Sovarion's very soul — capable of cutting through
+                    dimensions with a single strike.
+                </div>
+            </div>
+
+            <!-- SKILLS -->
+            <div class="skills-title">⚡ ABILITIES</div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-name">COSMIC SLASH</div>
+                    <div class="skill-desc">A swing of Astraeblade that releases a wave of cosmic energy, piercing through dimensions.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">MULTIVERSE SHIELD</div>
+                    <div class="skill-desc">Summons a shield from the energy of 7 dimensions, reflecting incoming attacks.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">CELESTIAL BURST</div>
+                    <div class="skill-desc">Releases a star energy explosion that burns all enemies in a wide area.</div>
+                </div>
+                <div class="skill-card ultimate">
+                    <div class="skill-name">⭐ ULTIMATE — GUARDIAN NOVA</div>
+                    <div class="skill-desc">Sovarion merges with the Nexus Infinitum — radiating celestial light that destroys all darkness within a galactic radius.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 EPIC WARS:Story of Future by DEMONSTRABLE</p>
+    </footer>
 
 </body>
 </html>
