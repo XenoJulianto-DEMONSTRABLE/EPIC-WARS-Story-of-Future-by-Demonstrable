@@ -17,6 +17,53 @@
     </script>
 
     <style>
+        /* NAVBAR */
+        .sovarion-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+        }
+
+        .nav-icon-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            border-radius: 12px;
+            background: rgba(0, 255, 136, 0.05);
+            transition: 0.3s;
+            text-decoration: none;
+            animation: navBoxPulse 3s ease-in-out infinite alternate;
+        }
+
+        .nav-icon-box:hover {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.15);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            transform: scale(1.1);
+        }
+
+        @keyframes navBoxPulse {
+            0% { box-shadow: 0 0 5px rgba(0, 255, 136, 0.2); }
+            100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.4); }
+        }
+
+        .nav-icon-box img {
+            width: 60px;
+            height: 60px;
+            border: none !important;
+            animation: none !important;
+            box-shadow: none !important;
+        }
+
+        /* CHAR PAGE */
         .char-page {
             max-width: 1100px;
             margin: 40px auto;
@@ -27,30 +74,24 @@
             flex-wrap: wrap;
         }
 
-        /* LEFT — Character Image */
         .char-left {
             flex: 1;
             min-width: 280px;
             text-align: center;
         }
 
-            .char-left img {
-                width: 100%;
-                max-width: 350px;
-                border-radius: 15px;
-                border: 2px solid #00ff88;
-                box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-                animation: charGlow 3s ease-in-out infinite alternate;
-            }
+        .char-left img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 15px;
+            border: 2px solid #00ff88;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            animation: charGlow 3s ease-in-out infinite alternate;
+        }
 
         @keyframes charGlow {
-            0% {
-                box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-            }
-
-            100% {
-                box-shadow: 0 0 50px rgba(0, 255, 136, 0.9);
-            }
+            0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+            100% { box-shadow: 0 0 50px rgba(0, 255, 136, 0.9); }
         }
 
         .char-moral {
@@ -65,7 +106,6 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        /* RIGHT — Character Info */
         .char-right {
             flex: 2;
             min-width: 300px;
@@ -102,7 +142,6 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        /* SKILLS */
         .skills-title {
             color: #00ff88;
             font-size: 1em;
@@ -127,21 +166,21 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-            .skill-card:hover {
-                border-color: #00ff88;
-                box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-                transform: translateY(-3px);
-            }
+        .skill-card:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+            transform: translateY(-3px);
+        }
 
-            .skill-card.ultimate {
-                grid-column: span 2;
-                border-color: rgba(255, 200, 0, 0.5);
-            }
+        .skill-card.ultimate {
+            grid-column: span 2;
+            border-color: rgba(255, 200, 0, 0.5);
+        }
 
-                .skill-card.ultimate:hover {
-                    border-color: #ffcc00;
-                    box-shadow: 0 0 15px rgba(255, 200, 0, 0.4);
-                }
+        .skill-card.ultimate:hover {
+            border-color: #ffcc00;
+            box-shadow: 0 0 15px rgba(255, 200, 0, 0.4);
+        }
 
         .skill-name {
             color: #00ff88;
@@ -160,7 +199,6 @@
             line-height: 1.5;
         }
 
-        /* WEAPON */
         .weapon-box {
             background: rgba(0, 255, 136, 0.05);
             border: 1px solid rgba(0, 255, 136, 0.3);
@@ -189,7 +227,6 @@
             line-height: 1.6;
         }
 
-        /* BACK BUTTON */
         .back-btn {
             display: inline-block;
             padding: 10px 25px;
@@ -204,31 +241,28 @@
             margin-bottom: 30px;
         }
 
-            .back-btn:hover {
-                background: #00ff88;
-                color: black;
-            }
+        .back-btn:hover {
+            background: #00ff88;
+            color: black;
+        }
     </style>
 </head>
 
 <body>
 
-    <nav>
-        <a href="index.html">
-            <img src="HOME-icon.png" alt="HOME"
-                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+    <!-- NAVBAR RAPI -->
+    <nav class="sovarion-nav">
+        <a href="index.html" class="nav-icon-box">
+            <img src="HOME-icon.png" alt="HOME">
         </a>
-        <a href="characters.html">
-            <img src="CHARACTERS-icon.png" alt="CHARACTERS"
-                 style="width:150px;height:150px;border:none;animation:none;box-shadow:none;">
+        <a href="characters.html" class="nav-icon-box">
+            <img src="CHARACTERS-icon.png" alt="CHARACTERS">
         </a>
-        <a href="story.html">
-            <img src="STORY-icon.png" alt="STORY"
-                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+        <a href="story.html" class="nav-icon-box">
+            <img src="STORY-icon.png" alt="STORY">
         </a>
-        <a href="login.html">
-            <img src="LOGIN-icon.png" alt="LOGIN"
-                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+        <a href="login.html" class="nav-icon-box">
+            <img src="LOGIN-icon.png" alt="LOGIN">
         </a>
     </nav>
 
