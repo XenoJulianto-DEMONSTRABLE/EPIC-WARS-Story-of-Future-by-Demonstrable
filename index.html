@@ -39,8 +39,13 @@
         }
 
         @keyframes galaxyPulse {
-            0% { filter: brightness(1); }
-            100% { filter: brightness(1.3); }
+            0% {
+                filter: brightness(1);
+            }
+
+            100% {
+                filter: brightness(1.3);
+            }
         }
 
         .stars-layer {
@@ -52,8 +57,13 @@
         }
 
         @keyframes starsTwinkle {
-            0% { opacity: 0.6; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0.6;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         .fire-layer {
@@ -67,8 +77,15 @@
         }
 
         @keyframes firePulse {
-            0% { opacity: 0.6; transform: scaleY(1); }
-            100% { opacity: 1; transform: scaleY(1.1); }
+            0% {
+                opacity: 0.6;
+                transform: scaleY(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scaleY(1.1);
+            }
         }
 
         .nebula-layer {
@@ -80,8 +97,13 @@
         }
 
         @keyframes nebulaMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-20px, -20px); }
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-20px, -20px);
+            }
         }
 
         .particle {
@@ -93,10 +115,23 @@
         }
 
         @keyframes particleFloat {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(720deg);
+                opacity: 0;
+            }
         }
 
         /* SAWERIA BUTTON */
@@ -124,14 +159,19 @@
             animation: saweriaPulse 2s ease-in-out infinite alternate;
         }
 
-        .saweria-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(255, 100, 0, 0.8);
-        }
+            .saweria-btn:hover {
+                transform: scale(1.1);
+                box-shadow: 0 0 40px rgba(255, 100, 0, 0.8);
+            }
 
         @keyframes saweriaPulse {
-            0% { box-shadow: 0 0 20px rgba(255, 100, 0, 0.5); }
-            100% { box-shadow: 0 0 40px rgba(255, 100, 0, 0.9); }
+            0% {
+                box-shadow: 0 0 20px rgba(255, 100, 0, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 0 40px rgba(255, 100, 0, 0.9);
+            }
         }
 
         .saweria-text {
@@ -203,6 +243,49 @@
     </header>
 
     <section class="about">
+
+        <!-- SECTION LORE -->
+        <section class="lore-section">
+            <div class="lore-container">
+                <h2 class="lore-title">⚔️ THE CHRONICLE BEGINS ⚔️</h2>
+                <p class="lore-subtitle">— A war that shook the entire multiverse —</p>
+
+                <div class="lore-cards">
+
+                    <!-- Card 1 -->
+                    <div class="lore-card">
+                        <div class="lore-icon">🌌</div>
+                        <h3>Nexus Infinitum</h3>
+                        <p>"It is not a place, not a creature, not a weapon. It is the very foundation of existence itself."</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="lore-card">
+                        <div class="lore-icon">👹</div>
+                        <h3>Vorrath</h3>
+                        <p>"It had only one instinct — to destroy everything. He is Vorrath. The Beast of Galaxy."</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="lore-card">
+                        <div class="lore-icon">⚔️</div>
+                        <h3>The Great War</h3>
+                        <p>"Galaxies became battlefields. Dimensions collapsed one by one. The fate of all existence hung in the balance."</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="lore-card">
+                        <div class="lore-icon">🌍</div>
+                        <h3>Earth</h3>
+                        <p>"Earth was no longer just a small forgotten planet. It had become the center of everything."</p>
+                    </div>
+
+                </div>
+
+                <a href="story.html" class="lore-btn">📖 Read Full Story</a>
+            </div>
+        </section>
+
         <h1>Welcome to the world of EPIC WARS:Story of Future Website</h1>
     </section>
 
