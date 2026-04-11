@@ -17,26 +17,173 @@
     <link rel="icon" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
+    <style>
+        /* NAVBAR */
+        .char-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid rgba(56, 30, 255, 0.3);
+            box-shadow: 0 0 20px rgba(56, 30, 255, 0.1);
+        }
+
+        .nav-icon-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(56, 30, 255, 0.4);
+            border-radius: 12px;
+            background: rgba(56, 30, 255, 0.05);
+            transition: 0.3s;
+            text-decoration: none;
+            animation: navBoxPulse 3s ease-in-out infinite alternate;
+        }
+
+        .nav-icon-box:hover {
+            border-color: #381eff;
+            background: rgba(56, 30, 255, 0.15);
+            box-shadow: 0 0 20px rgba(56, 30, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        @keyframes navBoxPulse {
+            0% { box-shadow: 0 0 5px rgba(56, 30, 255, 0.2); }
+            100% { box-shadow: 0 0 15px rgba(56, 30, 255, 0.4); }
+        }
+
+        .nav-icon-box img {
+            width: 60px;
+            height: 60px;
+            border: none !important;
+            animation: none !important;
+            box-shadow: none !important;
+        }
+
+        /* TITLE */
+        .title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5em;
+            color: white;
+            letter-spacing: 6px;
+            margin: 40px 0 30px 0;
+            text-shadow: 0 0 20px rgba(56, 30, 255, 0.5);
+        }
+
+        /* CHARACTERS GRID - MLBB Style */
+        .characters-container {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* CHARACTER CARD */
+        .char-card-link {
+            text-decoration: none;
+            display: block;
+        }
+
+        .character-card-new {
+            position: relative;
+            width: 200px;
+            height: 280px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .character-card-new:hover {
+            width: 280px;
+            height: 380px;
+            z-index: 10;
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 0 30px rgba(56, 30, 255, 0.6);
+        }
+
+        /* IMAGE fills entire card */
+        .character-card-new img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            border: none !important;
+            animation: none !important;
+            box-shadow: none !important;
+            transition: 0.4s;
+        }
+
+        /* OVERLAY at bottom */
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 15px 15px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            transition: 0.3s;
+        }
+
+        .card-name {
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            font-size: 1em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #aaa;
+            font-size: 0.65em;
+            letter-spacing: 1px;
+        }
+
+        /* Sovarion — green glow */
+        .sovarion-new:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+            border-color: #00ff88;
+        }
+
+        .sovarion-new .card-name { color: #00ff88; }
+
+        /* Vorrath — purple glow */
+        .vorrath-new:hover {
+            box-shadow: 0 0 30px rgba(170, 0, 255, 0.6);
+            border-color: #aa00ff;
+        }
+
+        .vorrath-new .card-name { color: #aa00ff; }
+    </style>
+
 </head>
 
 <body class="characters-page">
 
-    <nav class="game-menu">
-        <a href="index.html">
-            <img src="HOME-icon.png" alt="HOME"
-                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+    <!-- NAVBAR -->
+    <nav class="char-nav">
+        <a href="index.html" class="nav-icon-box">
+            <img src="HOME-icon.png" alt="HOME">
         </a>
-        <a href="characters.html">
-            <img src="CHARACTERS-icon.png" alt="CHARACTERS"
-                 style="width:150px;height:150px;border:none;animation:none;box-shadow:none;">
+        <a href="characters.html" class="nav-icon-box">
+            <img src="CHARACTERS-icon.png" alt="CHARACTERS">
         </a>
-        <a href="story.html">
-            <img src="STORY-icon.png" alt="STORY"
-                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+        <a href="story.html" class="nav-icon-box">
+            <img src="STORY-icon.png" alt="STORY">
         </a>
-        <a href="login.html">
-            <img src="LOGIN-icon.png" alt="LOGIN"
-                 style="width:100px;height:100px;border:none;animation:none;box-shadow:none;">
+        <a href="login.html" class="nav-icon-box">
+            <img src="LOGIN-icon.png" alt="LOGIN">
         </a>
     </nav>
 
@@ -45,20 +192,24 @@
     <div class="characters-container">
 
         <!-- Sovarion Card -->
-        <a href="sovarion.html" style="text-decoration:none;">
-            <div class="character-card sovarion-card">
-                <img src="SOVARION.png">
-                <h2>Sovarion</h2>
-                <p>Guardian of the Multiverse.</p>
+        <a href="sovarion.html" class="char-card-link">
+            <div class="character-card-new sovarion-new">
+                <img src="SOVARION.png" alt="Sovarion">
+                <div class="card-overlay">
+                    <div class="card-name">SOVARION</div>
+                    <div class="card-title">Guardian of the Multiverse</div>
+                </div>
             </div>
         </a>
 
         <!-- Vorrath Card -->
-        <a href="vorrath.html" style="text-decoration:none;">
-            <div class="character-card">
-                <img src="VORRATH.png">
-                <h2>Vorrath</h2>
-                <p>The Beast of Galaxy</p>
+        <a href="vorrath.html" class="char-card-link">
+            <div class="character-card-new vorrath-new">
+                <img src="VORRATH.png" alt="Vorrath">
+                <div class="card-overlay">
+                    <div class="card-name">VORRATH</div>
+                    <div class="card-title">The Beast of Galaxy</div>
+                </div>
             </div>
         </a>
 
