@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Vorrath - EPIC WARS:Story of Future</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RESM87LKGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-RESM87LKGB');
+    </script>
+
+    <style>
+        /* NAVBAR */
+        .vorrath-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid rgba(170, 0, 255, 0.3);
+            box-shadow: 0 0 20px rgba(170, 0, 255, 0.1);
+        }
+
+        .nav-icon-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(170, 0, 255, 0.4);
+            border-radius: 12px;
+            background: rgba(170, 0, 255, 0.05);
+            transition: 0.3s;
+            text-decoration: none;
+            animation: navBoxPulse 3s ease-in-out infinite alternate;
+        }
+
+            .nav-icon-box:hover {
+                border-color: #aa00ff;
+                background: rgba(170, 0, 255, 0.15);
+                box-shadow: 0 0 20px rgba(170, 0, 255, 0.5);
+                transform: scale(1.1);
+            }
+
+        @keyframes navBoxPulse {
+            0% {
+                box-shadow: 0 0 5px rgba(170, 0, 255, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 15px rgba(170, 0, 255, 0.4);
+            }
+        }
+
+        .nav-icon-box img {
+            width: 60px;
+            height: 60px;
+            border: none !important;
+            animation: none !important;
+            box-shadow: none !important;
+        }
+
+        /* CHAR PAGE */
+        .char-page {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .char-left {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+
+            .char-left img {
+                width: 100%;
+                max-width: 350px;
+                border-radius: 15px;
+                border: 2px solid #aa00ff;
+                box-shadow: 0 0 30px rgba(170, 0, 255, 0.5);
+                animation: charGlow 3s ease-in-out infinite alternate;
+            }
+
+        @keyframes charGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(170, 0, 255, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 50px rgba(170, 0, 255, 0.9);
+            }
+        }
+
+        .char-moral {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 20px;
+            border: 1px solid #aa00ff;
+            border-radius: 20px;
+            color: #aa00ff;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .char-right {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .char-name {
+            font-size: 3em;
+            color: #aa00ff;
+            text-shadow: 0 0 20px #aa00ff;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .char-title {
+            color: #aaa;
+            font-size: 1em;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .char-divider {
+            border: none;
+            border-top: 1px solid rgba(170, 0, 255, 0.3);
+            margin: 20px 0;
+        }
+
+        .char-desc {
+            color: #ccc;
+            line-height: 1.8;
+            font-size: 0.95em;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .skills-title {
+            color: #aa00ff;
+            font-size: 1em;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .skill-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(170, 0, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            transition: 0.3s;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+            .skill-card:hover {
+                border-color: #aa00ff;
+                box-shadow: 0 0 15px rgba(170, 0, 255, 0.3);
+                transform: translateY(-3px);
+            }
+
+            .skill-card.ultimate {
+                grid-column: span 2;
+                border-color: rgba(255, 50, 50, 0.5);
+            }
+
+                .skill-card.ultimate:hover {
+                    border-color: #ff3333;
+                    box-shadow: 0 0 15px rgba(255, 50, 50, 0.4);
+                }
+
+        .skill-name {
+            color: #aa00ff;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .skill-card.ultimate .skill-name {
+            color: #ff3333;
+        }
+
+        .skill-desc {
+            color: #aaa;
+            font-size: 0.75em;
+            line-height: 1.5;
+        }
+
+        .weapon-box {
+            background: rgba(170, 0, 255, 0.05);
+            border: 1px solid rgba(170, 0, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .weapon-title {
+            color: #aa00ff;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .weapon-name {
+            color: white;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .weapon-desc {
+            color: #aaa;
+            font-size: 0.8em;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid #aa00ff;
+            color: #aa00ff;
+            border-radius: 25px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            margin-bottom: 30px;
+        }
+
+            .back-btn:hover {
+                background: #aa00ff;
+                color: black;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="vorrath-nav">
+        <a href="index.html" class="nav-icon-box">
+            <img src="HOME-icon.png" alt="HOME">
+        </a>
+        <a href="characters.html" class="nav-icon-box">
+            <img src="CHARACTERS-icon.png" alt="CHARACTERS">
+        </a>
+        <a href="story.html" class="nav-icon-box">
+            <img src="STORY-icon.png" alt="STORY">
+        </a>
+        <a href="login.html" class="nav-icon-box">
+            <img src="LOGIN-icon.png" alt="LOGIN">
+        </a>
+    </nav>
+
+    <div class="char-page">
+
+        <!-- LEFT -->
+        <div class="char-left">
+            <img src="VORRATH.png" alt="Vorrath">
+            <div class="char-moral">💀 CHAOTIC EVIL</div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="char-right">
+
+            <a href="characters.html" class="back-btn">← Back to Characters</a>
+
+            <h1 class="char-name">VORRATH</h1>
+            <p class="char-title">— The Beast of Galaxy —</p>
+
+            <hr class="char-divider">
+
+            <p class="char-desc">
+                Born from the shadowed side of Nexus Infinitum's energy — unplanned, unwanted.
+                Vorrath has no noble purpose, no ambition. It has only one instinct —
+                to destroy everything. Once the size of a black hole, now chained and awakened,
+                Vorrath roams free once more.
+            </p>
+
+            <!-- WEAPON -->
+            <div class="weapon-box">
+                <div class="weapon-title">💀 WEAPON</div>
+                <div class="weapon-name">DOOMCLAW</div>
+                <div class="weapon-desc">
+                    Not a crafted weapon — Doomclaw is part of Vorrath's own body,
+                    formed from hundreds of galaxies he has destroyed. A massive mace
+                    that grows larger with every civilization it crushes.
+                </div>
+            </div>
+
+            <!-- SKILLS -->
+            <div class="skills-title">💀 ABILITIES</div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-name">VOID STRIKE</div>
+                    <div class="skill-desc">Doomclaw smashes open a dimensional rift, pulling enemies into the void darkness.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">CHAOS SURGE</div>
+                    <div class="skill-desc">Releases a wave of chaos energy that corrupts everything it touches.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">GALAXY DRAIN</div>
+                    <div class="skill-desc">Absorbs energy from the entire area, healing while weakening all enemies around him.</div>
+                </div>
+                <div class="skill-card ultimate">
+                    <div class="skill-name">🔥 ULTIMATE — GALACTIC ANNIHILATION</div>
+                    <div class="skill-desc">Vorrath merges with destruction itself — creating a void explosion that erases all dimensions within its radius.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 EPIC WARS:Story of Future by DEMONSTRABLE</p>
+    </footer>
+
+</body>
+</html>
