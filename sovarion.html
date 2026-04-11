@@ -43,16 +43,21 @@
             animation: navBoxPulse 3s ease-in-out infinite alternate;
         }
 
-        .nav-icon-box:hover {
-            border-color: #00ff88;
-            background: rgba(0, 255, 136, 0.15);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-            transform: scale(1.1);
-        }
+            .nav-icon-box:hover {
+                border-color: #00ff88;
+                background: rgba(0, 255, 136, 0.15);
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+                transform: scale(1.1);
+            }
 
         @keyframes navBoxPulse {
-            0% { box-shadow: 0 0 5px rgba(0, 255, 136, 0.2); }
-            100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.4); }
+            0% {
+                box-shadow: 0 0 5px rgba(0, 255, 136, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+            }
         }
 
         .nav-icon-box img {
@@ -80,18 +85,23 @@
             text-align: center;
         }
 
-        .char-left img {
-            width: 100%;
-            max-width: 350px;
-            border-radius: 15px;
-            border: 2px solid #00ff88;
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-            animation: charGlow 3s ease-in-out infinite alternate;
-        }
+            .char-left img {
+                width: 100%;
+                max-width: 350px;
+                border-radius: 15px;
+                border: 2px solid #00ff88;
+                box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+                animation: charGlow 3s ease-in-out infinite alternate;
+            }
 
         @keyframes charGlow {
-            0% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
-            100% { box-shadow: 0 0 50px rgba(0, 255, 136, 0.9); }
+            0% {
+                box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 50px rgba(0, 255, 136, 0.9);
+            }
         }
 
         .char-moral {
@@ -166,21 +176,21 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        .skill-card:hover {
-            border-color: #00ff88;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-            transform: translateY(-3px);
-        }
+            .skill-card:hover {
+                border-color: #00ff88;
+                box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+                transform: translateY(-3px);
+            }
 
-        .skill-card.ultimate {
-            grid-column: span 2;
-            border-color: rgba(255, 200, 0, 0.5);
-        }
+            .skill-card.ultimate {
+                grid-column: span 2;
+                border-color: rgba(255, 200, 0, 0.5);
+            }
 
-        .skill-card.ultimate:hover {
-            border-color: #ffcc00;
-            box-shadow: 0 0 15px rgba(255, 200, 0, 0.4);
-        }
+                .skill-card.ultimate:hover {
+                    border-color: #ffcc00;
+                    box-shadow: 0 0 15px rgba(255, 200, 0, 0.4);
+                }
 
         .skill-name {
             color: #00ff88;
@@ -241,10 +251,10 @@
             margin-bottom: 30px;
         }
 
-        .back-btn:hover {
-            background: #00ff88;
-            color: black;
-        }
+            .back-btn:hover {
+                background: #00ff88;
+                color: black;
+            }
     </style>
 </head>
 
@@ -255,17 +265,7 @@
         <a href="index.html" class="nav-icon-box">
             <img src="HOME-icon.png" alt="HOME">
         </a>
-        <a href="characters.html" class="nav-icon-box">
-            <img src="CHARACTERS-icon.png" alt="CHARACTERS">
-        </a>
-        <a href="story.html" class="nav-icon-box">
-            <img src="STORY-icon.png" alt="STORY">
-        </a>
-        <a href="login.html" class="nav-icon-box">
-            <img src="LOGIN-icon.png" alt="LOGIN">
-        </a>
     </nav>
-
     <div class="char-page">
 
         <!-- LEFT -->
