@@ -715,3 +715,11 @@ header {
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
             transform: translateY(-2px);
         }
+
+.story-page header {
+    justify-content: center;
+}
+
+.login-page header {
+    justify-content: center;
+}
