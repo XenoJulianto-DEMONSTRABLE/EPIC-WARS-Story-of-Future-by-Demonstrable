@@ -538,38 +538,6 @@ footer {
 
 
 
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background: black;
-}
-
-.game-menu {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    animation: slideMenu 1s ease forwards;
-}
-
-    .game-menu a {
-        color: #381eff;
-        text-decoration: none;
-        font-size: 18px;
-        padding: 10px 20px;
-        border: 2px solid #381eff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px #381eff;
-        transition: 0.3s;
-    }
-
-        .game-menu a:hover {
-            background: #381eff;
-            color: black;
-            box-shadow: 0 0 20px #381eff, 0 0 40px #381eff;
-            transform: scale(1.1);
-        }
-
 .title {
     text-align: center;
     margin-top: 40px;
