@@ -1,4 +1,11 @@
 
+.character-detail-page header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
 .characters-page header {
     justify-content: space-between;
 }
@@ -726,4 +733,5 @@ header {
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
             transform: translateY(-2px);
         }
+
 
