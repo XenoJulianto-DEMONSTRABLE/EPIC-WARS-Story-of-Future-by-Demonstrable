@@ -1,4 +1,11 @@
 
+.login-page header {
+    justify-content: center;
+}
+
+.story-page header {
+    justify-content: center;
+}
 
 /* LORE SECTION */
 .lore-section {
@@ -716,10 +723,3 @@ header {
             transform: translateY(-2px);
         }
 
-.story-page header {
-    justify-content: center;
-}
-
-.login-page header {
-    justify-content: center;
-}
