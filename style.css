@@ -696,3 +696,54 @@ footer {
     background: black;
     margin-top: 20px;
 }
+
+/* ============================================= */
+/* NAVBAR KECIL - PERSIS SEPERTI STORY.HTML      */
+/* ============================================= */
+
+header {
+    padding: 15px 40px !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3) !important;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+    .logo-container img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .logo-container h1 {
+        font-size: 23px !important;
+        margin: 0 !important;
+        text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+    }
+
+.game-menu {
+    gap: 14px !important;
+}
+
+    .game-menu a {
+        padding: 11px 26px !important;
+        background: rgba(10, 10, 30, 0.8) !important;
+        color: #00ffff !important;
+        border: 2px solid #00ffff !important;
+        border-radius: 6px !important;
+        font-size: 14.5px !important;
+        font-weight: 600 !important;
+        letter-spacing: 1px !important;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important;
+        transition: all 0.3s ease !important;
+    }
+
+        .game-menu a:hover {
+            background: #00ffff !important;
+            color: #000000 !important;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9) !important;
+            transform: translateY(-2px) !important;
+        }
