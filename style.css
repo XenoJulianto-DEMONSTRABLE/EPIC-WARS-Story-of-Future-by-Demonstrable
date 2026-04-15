@@ -1,4 +1,8 @@
 
+.characters-page header {
+    justify-content: space-between;
+}
+
 .login-page header {
     justify-content: center;
 }
