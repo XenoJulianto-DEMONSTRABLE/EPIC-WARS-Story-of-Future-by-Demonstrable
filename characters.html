@@ -44,16 +44,21 @@
             animation: navBoxPulse 3s ease-in-out infinite alternate;
         }
 
-        .nav-icon-box:hover {
-            border-color: #381eff;
-            background: rgba(56, 30, 255, 0.15);
-            box-shadow: 0 0 20px rgba(56, 30, 255, 0.5);
-            transform: scale(1.1);
-        }
+            .nav-icon-box:hover {
+                border-color: #381eff;
+                background: rgba(56, 30, 255, 0.15);
+                box-shadow: 0 0 20px rgba(56, 30, 255, 0.5);
+                transform: scale(1.1);
+            }
 
         @keyframes navBoxPulse {
-            0% { box-shadow: 0 0 5px rgba(56, 30, 255, 0.2); }
-            100% { box-shadow: 0 0 15px rgba(56, 30, 255, 0.4); }
+            0% {
+                box-shadow: 0 0 5px rgba(56, 30, 255, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 15px rgba(56, 30, 255, 0.4);
+            }
         }
 
         .nav-icon-box img {
@@ -103,25 +108,25 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .character-card-new:hover {
-            width: 280px;
-            height: 380px;
-            z-index: 10;
-            border-color: rgba(255,255,255,0.4);
-            box-shadow: 0 0 30px rgba(56, 30, 255, 0.6);
-        }
+            .character-card-new:hover {
+                width: 280px;
+                height: 380px;
+                z-index: 10;
+                border-color: rgba(255,255,255,0.4);
+                box-shadow: 0 0 30px rgba(56, 30, 255, 0.6);
+            }
 
-        /* IMAGE fills entire card */
-        .character-card-new img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            border: none !important;
-            animation: none !important;
-            box-shadow: none !important;
-            transition: 0.4s;
-        }
+            /* IMAGE fills entire card */
+            .character-card-new img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top;
+                border: none !important;
+                animation: none !important;
+                box-shadow: none !important;
+                transition: 0.4s;
+            }
 
         /* OVERLAY at bottom */
         .card-overlay {
@@ -156,7 +161,9 @@
             border-color: #00ff88;
         }
 
-        .sovarion-new .card-name { color: #00ff88; }
+        .sovarion-new .card-name {
+            color: #00ff88;
+        }
 
         /* Vorrath — purple glow */
         .vorrath-new:hover {
@@ -164,7 +171,9 @@
             border-color: #aa00ff;
         }
 
-        .vorrath-new .card-name { color: #aa00ff; }
+        .vorrath-new .card-name {
+            color: #aa00ff;
+        }
     </style>
 
 </head>
@@ -172,20 +181,21 @@
 <body class="characters-page">
 
     <!-- NAVBAR -->
-    <nav class="char-nav">
-        <a href="index.html" class="nav-icon-box">
-            <img src="HOME-icon.png" alt="HOME">
-        </a>
-        <a href="characters.html" class="nav-icon-box">
-            <img src="CHARACTERS-icon.png" alt="CHARACTERS">
-        </a>
-        <a href="story.html" class="nav-icon-box">
-            <img src="STORY-icon.png" alt="STORY">
-        </a>
-        <a href="login.html" class="nav-icon-box">
-            <img src="LOGIN-icon.png" alt="LOGIN">
-        </a>
-    </nav>
+    <header>
+
+        <div class="logo-container">
+            <img src="logo.png">
+            <h1>EPIC WARS</h1>
+        </div>
+
+        <nav class="game-menu">
+            <a href="index.html">HOME</a>
+            <a href="characters.html">CHARACTERS</a>
+            <a href="story.html">STORY</a>
+            <a href="login.html">LOGIN</a>
+        </nav>
+
+    </header>
 
     <h1 class="title">EPIC CHARACTERS</h1>
 
