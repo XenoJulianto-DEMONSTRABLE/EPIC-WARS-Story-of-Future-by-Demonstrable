@@ -658,14 +658,14 @@ footer {
     margin-top: 20px;
 }
 
-/* ============================================= */
-/* NAVBAR KECIL - PERSIS SEPERTI STORY.HTML      */
-/* ============================================= */
-
+/* ==================== NAVBAR SMALL & CLEAN (sama seperti story.html) ==================== */
 header {
-    padding: 15px 40px !important;
-    background: rgba(0, 0, 0, 0.95) !important;
-    border-bottom: 1px solid rgba(0, 255, 255, 0.3) !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(0, 0, 0, 0.95);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
 }
 
 .logo-container {
@@ -680,31 +680,38 @@ header {
     }
 
     .logo-container h1 {
-        font-size: 23px !important;
-        margin: 0 !important;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 23px;
+        font-weight: 700;
+        color: white;
+        margin: 0;
         text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
     }
 
 .game-menu {
-    gap: 14px !important;
+    display: flex;
+    gap: 14px;
 }
 
     .game-menu a {
-        padding: 11px 26px !important;
-        background: rgba(10, 10, 30, 0.8) !important;
-        color: #00ffff !important;
-        border: 2px solid #00ffff !important;
-        border-radius: 6px !important;
-        font-size: 14.5px !important;
-        font-weight: 600 !important;
-        letter-spacing: 1px !important;
-        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important;
-        transition: all 0.3s ease !important;
+        padding: 11px 26px;
+        background: rgba(10, 10, 30, 0.8);
+        color: #00ffff;
+        border: 2px solid #00ffff;
+        border-radius: 6px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 14.5px;
+        font-weight: 600;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        transition: all 0.3s ease;
     }
 
         .game-menu a:hover {
-            background: #00ffff !important;
-            color: #000000 !important;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9) !important;
-            transform: translateY(-2px) !important;
+            background: #00ffff;
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+            transform: translateY(-2px);
         }
