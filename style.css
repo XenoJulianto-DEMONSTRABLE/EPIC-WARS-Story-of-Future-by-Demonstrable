@@ -333,18 +333,31 @@ body {
 
 
 .login-container {
-
-position:absolute;
-
-top:50%;
-left:20%;
-
-transform:translate(-50%, -50%);
-
-z-index:5;
-
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
 }
 
+.login-box {
+    animation: floatPanel 4s ease-in-out infinite;
+}
+
+@keyframes floatPanel {
+
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
 
 .login-box {
     width: 350px;
