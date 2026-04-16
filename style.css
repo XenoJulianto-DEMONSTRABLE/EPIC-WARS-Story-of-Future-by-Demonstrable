@@ -333,12 +333,13 @@ body {
 
 
 .login-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 100px;
+    position: absolute;
+    top: 55%;
+    left: 8%;
+    transform: translateY(-50%);
+    z-index: 5;
 }
+
 
 .login-box {
     width: 350px;
@@ -720,5 +721,4 @@ header {
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
             transform: translateY(-2px);
         }
-
 
