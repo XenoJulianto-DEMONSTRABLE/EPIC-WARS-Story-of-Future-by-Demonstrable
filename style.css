@@ -333,11 +333,16 @@ body {
 
 
 .login-container {
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
+
+position: fixed;
+
+top: 50%;
+left: 25%;
+
+transform: translate(-50%, -50%);
+
+z-index: 999;
+
 }
 
 .login-box {
