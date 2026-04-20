@@ -310,31 +310,27 @@ body {
 }
 
 @keyframes loginFade {
-from {
-opacity:0;
-transform:translateY(30px);
-}
-to {
-opacity:1;
-transform:translateY(0);
-}
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .login-box {
-animation: loginFade 1s ease;
+    animation: loginFade 1s ease;
 }
 
 .login-container {
-
-position: fixed;
-
-top: 50%;
-left: 25%;
-
-transform: translate(-50%, -50%);
-
-z-index: 999;
-
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
 }
 
 .login-box {
@@ -408,6 +404,7 @@ z-index: 999;
     display: flex;
     gap: 10px;
 }
+
     .social-login button {
         padding: 10px;
         background: #222;
@@ -443,21 +440,23 @@ z-index: 999;
     border-radius: 50%;
     border: 2px solid black;
 }
-    .avatar:hover {
-        transform: scale(1.1);
-    }
 
-    .avatar::after {
-        content: "";
-        width: 10px;
-        height: 10px;
-        background: lime;
-        border-radius: 50%;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        border: 2px solid black;
-    }
+.avatar:hover {
+    transform: scale(1.1);
+}
+
+.avatar::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: lime;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 2px solid black;
+}
+
 .account {
     position: relative;
     cursor: pointer;
@@ -475,6 +474,7 @@ z-index: 999;
         transform: translateY(0);
     }
 }
+
 .dropdown {
     display: none;
     position: absolute;
@@ -501,6 +501,7 @@ z-index: 999;
             background: #381eff;
             color: black;
         }
+
 .account:hover .dropdown {
     display: block;
 }
@@ -597,6 +598,7 @@ z-index: 999;
     overflow: hidden;
     position: relative; /* 🔥 INI FIX UTAMA */
 }
+
     .loading-bar::before {
         content: "";
         width: 50%;
@@ -617,16 +619,16 @@ z-index: 999;
 }
 
 
-nav a{
-    color:white;
-    margin:10px;
-    text-decoration:none;
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
 }
 
-.hero{
-    text-align:center;
-    padding:120px 20px;
-    background:linear-gradient(black,#111);
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+    background: linear-gradient(black,#111);
 }
 
 button {
@@ -666,9 +668,9 @@ button {
     }
 
 
-.about{
-    padding:350px;
-    text-align:center;
+.about {
+    padding: 350px;
+    text-align: center;
 }
 
 
@@ -736,4 +738,3 @@ header {
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
             transform: translateY(-2px);
         }
-
