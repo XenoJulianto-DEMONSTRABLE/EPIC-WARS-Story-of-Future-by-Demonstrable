@@ -1,18 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-    <style>
-    .login-container {
-        position: fixed;
-        top: 50%;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        z-index: 999;
-    }
-</style>
-
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RESM87LKGB"></script>
     <script>
@@ -22,12 +10,131 @@
         gtag('config', 'G-RESM87LKGB');
     </script>
 
-
     <meta charset="utf-8" />
     <title>Login - EPIC WARS:Story of Future</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        .login-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+        }
+
+        header {
+            position: relative;
+            z-index: 1000;
+        }
+
+        /* PROFILE BOX */
+        .profile-box {
+            display: none;
+            width: 350px;
+            padding: 40px;
+            background: rgba(0, 0, 30, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 0 30px #381eff;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-box img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #381eff;
+            box-shadow: 0 0 15px #381eff;
+            animation: none !important;
+            margin-bottom: 15px;
+        }
+
+        .profile-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1em;
+            color: white;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        .profile-email {
+            font-size: 0.75em;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .profile-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border: 1px solid #00ff88;
+            border-radius: 20px;
+            color: #00ff88;
+            font-size: 0.7em;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            border: 1px solid #ff3333;
+            color: #ff3333;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #ff3333;
+            color: white;
+            box-shadow: 0 0 15px #ff3333;
+        }
+
+        /* GOOGLE BTN */
+        .google-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            color: #333;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+            margin-top: 15px;
+        }
+
+        .google-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255,255,255,0.4);
+        }
+
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+            border: none !important;
+            animation: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+    </style>
 </head>
 
 <body class="login-page">
@@ -42,42 +149,116 @@
     </header>
 
     <div class="login-container">
-        <div class="login-box">
 
+        <!-- LOGIN BOX -->
+        <div class="login-box" id="loginBox">
             <h1>LOGIN</h1>
             <p class="login-sub">PREPARE for The EPIC WARS</p>
 
             <input type="text" id="username" placeholder="Username">
             <input type="password" id="password" placeholder="Password">
-
             <button onclick="login()">ENTER</button>
 
-            <p>OR LOGIN WITH</p>
+            <p style="color:#aaa; font-size:0.8em; margin:15px 0 5px 0;">OR LOGIN WITH</p>
 
-            <div class="social-login">
-                <button onclick="socialLogin('Google')">Google</button>
-                <button onclick="socialLogin('Facebook')">Facebook</button>
-                <button onclick="socialLogin('Microsoft')">Microsoft</button>
-            </div>
-
-
+            <button class="google-btn" onclick="loginWithGoogle()">
+                <img src="https://www.google.com/favicon.ico" alt="Google">
+                Continue with Google
+            </button>
         </div>
 
+        <!-- PROFILE BOX (muncul setelah login) -->
+        <div class="profile-box" id="profileBox">
+            <img id="profilePic" src="" alt="Profile">
+            <div class="profile-name" id="profileName">-</div>
+            <div class="profile-email" id="profileEmail">-</div>
+            <div class="profile-badge">⚔️ EPIC WARS RECRUIT</div>
+            <button class="logout-btn" onclick="logout()">LOGOUT</button>
         </div>
 
-        <div style="text-align: center; margin-top: 50px;">
-            <img src="stickman_elements.png"
-                 style="width: 1000px;
-              border-radius: 15px;
-              border: 2px solid yellow;
-              animation: rainbowBorder 3s linear infinite;">
-        </div>
+    </div>
 
-        <footer>
-            <p>© 2026 EPIC WARS:Stoy of Future by DEMONSTRABLE</p>
-        </footer>
+    <div style="text-align: center; margin-top: 50px;">
+        <img src="stickman_elements.png" class="rainbow-img"
+             style="width: 1000px; border-radius: 15px;">
+    </div>
 
-        <script src="script.js"></script>
+    <footer>
+        <p>© 2026 EPIC WARS:Story of Future by DEMONSTRABLE</p>
+    </footer>
 
+    <!-- FIREBASE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDZRDZvVl0Q3PPDKJbVZzE0x5xTZP0jQQs",
+            authDomain: "epic-wars-story-of-future.firebaseapp.com",
+            projectId: "epic-wars-story-of-future",
+            storageBucket: "epic-wars-story-of-future.firebasestorage.app",
+            messagingSenderId: "1006446935902",
+            appId: "1:1006446935902:web:953dcc6110d7e8b4a219cf",
+            measurementId: "G-25ZQJCML61"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // Login dengan Google
+        window.loginWithGoogle = async function() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                console.log("Login success:", result.user);
+            } catch (error) {
+                console.error("Login error:", error);
+                alert("Login gagal: " + error.message);
+            }
+        }
+
+        // Logout
+        window.logout = async function() {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                console.error("Logout error:", error);
+            }
+        }
+
+        // Cek status login
+        onAuthStateChanged(auth, (user) => {
+            const loginBox = document.getElementById('loginBox');
+            const profileBox = document.getElementById('profileBox');
+
+            if (user) {
+                // User sudah login — tampilkan profile
+                loginBox.style.display = 'none';
+                profileBox.style.display = 'block';
+                document.getElementById('profilePic').src = user.photoURL || 'EWSF-logo.png';
+                document.getElementById('profileName').textContent = user.displayName || 'WARRIOR';
+                document.getElementById('profileEmail').textContent = user.email;
+
+                // Update navbar LOGIN jadi nama user
+                document.querySelectorAll('.game-menu a').forEach(a => {
+                    if (a.textContent === 'LOGIN') {
+                        a.textContent = user.displayName ? user.displayName.split(' ')[0].toUpperCase() : 'PROFILE';
+                    }
+                });
+            } else {
+                // User belum login — tampilkan login box
+                loginBox.style.display = 'block';
+                profileBox.style.display = 'none';
+            }
+        });
+
+        // Fungsi login username/password (simulasi dulu)
+        window.login = function() {
+            alert("Username/Password login coming soon! Use Google login for now.");
+        }
+    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
