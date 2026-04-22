@@ -1,0 +1,755 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RESM87LKGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-RESM87LKGB');
+    </script>
+
+    <meta charset="utf-8" />
+    <title>Sony — EPIC WARS:Story of Future</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            font-family: 'Orbitron', sans-serif;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+            /* ===== DARK ATMOSPHERE BG ===== */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(ellipse at 20% 50%, rgba(128, 0, 0, 0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(60, 0, 0, 0.06) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(100, 0, 0, 0.05) 0%, transparent 60%);
+                z-index: -1;
+                pointer-events: none;
+            }
+
+        /* ===== NAVBAR ===== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid rgba(128, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(128, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+            .logo-container img {
+                width: 50px;
+                height: 50px;
+                border-radius: 8px;
+                border: 1px solid rgba(128, 0, 0, 0.3);
+            }
+
+            .logo-container h1 {
+                font-size: 1.2em;
+                color: #fff;
+                letter-spacing: 3px;
+            }
+
+        .game-menu {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+            .game-menu a {
+                text-decoration: none;
+                color: #999;
+                font-size: 0.7em;
+                letter-spacing: 2px;
+                padding: 8px 16px;
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 6px;
+                transition: 0.3s;
+            }
+
+                .game-menu a:hover {
+                    color: #800000;
+                    border-color: #800000;
+                    box-shadow: 0 0 15px rgba(128, 0, 0, 0.3);
+                }
+
+                .game-menu a.active {
+                    color: #800000;
+                    border-color: #800000;
+                    background: rgba(128, 0, 0, 0.1);
+                }
+
+        /* ===== BACK BUTTON ===== */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 30px auto 0;
+            padding: 10px 25px;
+            background: rgba(128, 0, 0, 0.1);
+            border: 1px solid rgba(128, 0, 0, 0.3);
+            border-radius: 8px;
+            color: #800000;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75em;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+            .back-btn:hover {
+                background: rgba(128, 0, 0, 0.2);
+                box-shadow: 0 0 20px rgba(128, 0, 0, 0.3);
+                transform: translateX(-5px);
+            }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            padding: 50px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .hero-image-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+            .hero-image-container img {
+                width: 350px;
+                height: 450px;
+                object-fit: cover;
+                object-position: top;
+                border-radius: 12px;
+                border: 2px solid rgba(128, 0, 0, 0.4);
+                box-shadow: 0 0 40px rgba(128, 0, 0, 0.3), 0 0 80px rgba(60, 0, 0, 0.2);
+                animation: heroGlow 4s ease-in-out infinite alternate;
+            }
+
+        @keyframes heroGlow {
+            0% {
+                box-shadow: 0 0 30px rgba(128, 0, 0, 0.2), 0 0 60px rgba(60, 0, 0, 0.1);
+            }
+
+            100% {
+                box-shadow: 0 0 50px rgba(128, 0, 0, 0.4), 0 0 100px rgba(60, 0, 0, 0.2);
+            }
+        }
+
+        .hero-info {
+            max-width: 500px;
+        }
+
+        .char-alias {
+            font-size: 0.8em;
+            color: #800000;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .char-name {
+            font-size: 3em;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 6px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 30px rgba(128, 0, 0, 0.5);
+        }
+
+        .char-origin {
+            font-size: 0.75em;
+            color: #666;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        .char-divider {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #800000, transparent);
+            margin-bottom: 25px;
+            border-radius: 2px;
+        }
+
+        .char-tagline {
+            font-size: 0.85em;
+            color: #cc6666;
+            font-style: italic;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .char-desc {
+            font-size: 0.7em;
+            color: #888;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-box {
+            background: rgba(128, 0, 0, 0.05);
+            border: 1px solid rgba(128, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+            .stat-box:hover {
+                border-color: #800000;
+                box-shadow: 0 0 20px rgba(128, 0, 0, 0.2);
+            }
+
+        .stat-label {
+            font-size: 0.6em;
+            color: #666;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .stat-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(to right, #800000, #cc3333);
+            box-shadow: 0 0 10px rgba(128, 0, 0, 0.5);
+            transition: width 1.5s ease;
+        }
+
+        /* ===== LORE SECTION ===== */
+        .lore-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #800000;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(128, 0, 0, 0.2);
+        }
+
+        .lore-content {
+            font-size: 0.75em;
+            color: #999;
+            line-height: 2;
+            letter-spacing: 0.5px;
+        }
+
+            .lore-content p {
+                margin-bottom: 20px;
+            }
+
+            .lore-content .highlight {
+                color: #cc6666;
+                font-weight: 700;
+            }
+
+            .lore-content .dark-highlight {
+                color: #800000;
+                font-weight: 700;
+            }
+
+        /* ===== ABILITIES SECTION ===== */
+        .abilities-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+        }
+
+        .abilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .ability-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(128, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .ability-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 4px;
+                height: 100%;
+                background: #800000;
+                border-radius: 2px;
+            }
+
+            .ability-card:hover {
+                border-color: rgba(128, 0, 0, 0.4);
+                box-shadow: 0 0 25px rgba(128, 0, 0, 0.15);
+                transform: translateY(-3px);
+            }
+
+        .ability-name {
+            font-size: 0.85em;
+            color: #800000;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .ability-type {
+            font-size: 0.55em;
+            color: #555;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .ability-desc {
+            font-size: 0.65em;
+            color: #777;
+            line-height: 1.8;
+        }
+
+        /* ===== WEAPON SECTION ===== */
+        .weapon-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+        }
+
+        .weapon-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(128, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 35px;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: 0.3s;
+        }
+
+            .weapon-card:hover {
+                border-color: #800000;
+                box-shadow: 0 0 30px rgba(128, 0, 0, 0.2);
+            }
+
+        .weapon-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(128, 0, 0, 0.1);
+            border: 2px solid rgba(128, 0, 0, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            flex-shrink: 0;
+            animation: weaponPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes weaponPulse {
+            0% {
+                box-shadow: 0 0 10px rgba(128, 0, 0, 0.1);
+            }
+
+            100% {
+                box-shadow: 0 0 25px rgba(128, 0, 0, 0.3);
+            }
+        }
+
+        .weapon-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .weapon-name {
+            font-size: 1.2em;
+            color: #800000;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .weapon-type {
+            font-size: 0.6em;
+            color: #555;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .weapon-desc {
+            font-size: 0.7em;
+            color: #777;
+            line-height: 1.8;
+        }
+
+        /* ===== QUOTE SECTION ===== */
+        .quote-section {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(128, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(128, 0, 0, 0.1);
+        }
+
+        .quote-text {
+            font-size: 1em;
+            color: #cc6666;
+            font-style: italic;
+            letter-spacing: 1px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .quote-author {
+            font-size: 0.65em;
+            color: #800000;
+            letter-spacing: 3px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(128, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+            footer p {
+                font-size: 0.6em;
+                color: #444;
+                letter-spacing: 2px;
+            }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px 20px;
+            }
+
+            .hero-image-container img {
+                width: 280px;
+                height: 360px;
+            }
+
+            .char-name {
+                font-size: 2em;
+            }
+
+            .lore-section,
+            .abilities-section,
+            .weapon-section,
+            .stats-container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo-container">
+            <img src="EWSF-logo.png" alt="Logo">
+            <h1>EPIC CHARACTER</h1>
+        </div>
+        <nav class="game-menu">
+            <a href="index.html">HOME</a>
+        </nav>
+    </header>
+
+    <!-- BACK BUTTON -->
+    <div style="text-align: center;">
+        <a href="characters.html" class="back-btn">← BACK TO CHARACTERS</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-image-container">
+            <img src="SONY.jpg" alt="Sony — The Black Hyena">
+        </div>
+        <div class="hero-info">
+            <div class="char-alias">THE BLACK HYENA</div>
+            <h1 class="char-name">SONY</h1>
+            <div class="char-origin">ORIGIN: BLACKTHORN CITY</div>
+            <div class="char-divider"></div>
+            <div class="char-tagline">
+                "Justice does not belong to those in power. Justice belongs to those brave enough to claim it in the dark."
+            </div>
+            <p class="char-desc">
+                A man with two faces. By day, he is known as an influential figure — wealthy, brilliant, and untouchable.
+                But when night falls, he becomes a shadow that cannot be traced. Taking no one's side.
+                Moving only by his own code.
+            </p>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats-container">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-label">INTELLIGENCE</div>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill" style="width: 95%;"></div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">STEALTH</div>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill" style="width: 92%;"></div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">COMBAT</div>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">TECHNOLOGY</div>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill" style="width: 98%;"></div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">DURABILITY</div>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">MYSTERY</div>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LORE -->
+    <section class="lore-section">
+        <h2 class="section-title">// LORE</h2>
+        <div class="lore-content">
+            <p>
+                <span class="dark-highlight">BlackThorn City</span> — a city built on a foundation of lies.
+                Its government is corrupt. Its police are bought. Its people are divided. In this city, massive protests
+                erupt almost every night — yet nothing ever changes. Justice is nothing more than an empty word
+                spoken by those who have never experienced hunger.
+            </p>
+            <p>
+                Amidst the chaos, a young boy lost everything. His family was <span class="highlight">left behind</span> —
+                not because they chose to leave, but because the system stripped away their rights one by one.
+                His parents joined a demonstration that ended in a violent crackdown. They never came back.
+            </p>
+            <p>
+                The boy grew up alone on the streets of BlackThorn. He learned to survive — not through kindness,
+                but through <span class="dark-highlight">intelligence and crime</span>. His first theft at age 10.
+                Joining a street gang at 13. Becoming one of the masterminds behind BlackThorn's biggest illegal operations by 16.
+            </p>
+            <p>
+                But there was something different about him. Beneath the sharpness and brutality,
+                there was a <span class="highlight">fire that never died</span> — an anger that didn't just want to destroy,
+                but wanted to <span class="highlight">change</span>.
+            </p>
+            <p>
+                One night, after a mission that nearly cost him his life, he discovered something
+                in the ruins of an old lab outside the city — <span class="dark-highlight">technology that shouldn't exist</span>.
+                Technology that didn't come from BlackThorn. Technology that didn't even come from Earth.
+            </p>
+            <p>
+                That was the turning point. He was no longer just a thief. He became something <span class="highlight">greater</span>.
+            </p>
+            <p>
+                With an intelligence already far above average, he studied the alien technology in a matter of months.
+                He built a <span class="dark-highlight">combat suit</span> — black, silent, and lethal.
+                He built a <span class="dark-highlight">rocket</span> from scrap parts and stolen components.
+                And he did something no one in BlackThorn believed was possible.
+            </p>
+            <p>
+                <span class="highlight">He flew into space.</span>
+            </p>
+            <p>
+                No one knew where he went. But when he returned years later,
+                he was no longer a street kid from BlackThorn. He was something else entirely.
+            </p>
+            <p>
+                By day, he emerged as a new figure — wealthy, influential, and seemingly unconnected to anything dark.
+                <span class="highlight">A Bruce Wayne vibe meeting Tony Stark</span>, but colder. More distant. Harder to read.
+            </p>
+            <p>
+                By night... he became <span class="dark-highlight">The Black Hyena</span>.
+                A shadow moving between the corridors of power.
+                Taking neither the side of The Authority of Galaxy, nor Queen Nathasias, nor anyone else.
+            </p>
+            <p>
+                He only stood for one thing: <span class="highlight">the truth that all sides have buried.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- ABILITIES -->
+    <section class="abilities-section">
+        <h2 class="section-title">// ABILITIES</h2>
+        <div class="abilities-grid">
+
+            <div class="ability-card">
+                <div class="ability-name">SHADOW VEIL</div>
+                <div class="ability-type">Passive — Stealth</div>
+                <p class="ability-desc">
+                    His suit absorbs surrounding light, making him virtually invisible in darkness.
+                    Even the most advanced sensors struggle to detect his presence when this ability is active.
+                </p>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">HACK REALITY</div>
+                <div class="ability-type">Active — Technology Manipulation</div>
+                <p class="ability-desc">
+                    Using a hidden neural antenna inside his helmet, he can infiltrate any system —
+                    from simple security networks to alien military mainframes — in a matter of seconds.
+                </p>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">HYENA'S BITE</div>
+                <div class="ability-type">Active — Combat</div>
+                <p class="ability-desc">
+                    A swift and lethal strike using concealed blades in the suit's forearms.
+                    Not as powerful as the Astraeblade, but far faster. Designed to kill before the enemy realizes what happened.
+                </p>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">ZERO GRAVITY SHIFT</div>
+                <div class="ability-type">Active — Mobility</div>
+                <p class="ability-desc">
+                    A miniature gravity module in his suit allows him to move unbound by gravity for up to 8 seconds.
+                    Used for impossible maneuvers — running on walls, hovering in mid-air, or escaping any situation.
+                </p>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">INTEL NETWORK</div>
+                <div class="ability-type">Passive — Information</div>
+                <p class="ability-desc">
+                    An underground information network he built over years.
+                    He knows almost everything about every faction — secrets that even The Authority of Galaxy itself is unaware of.
+                </p>
+            </div>
+
+            <div class="ability-card">
+                <div class="ability-name">DUAL IDENTITY</div>
+                <div class="ability-type">Ultimate — Transformation</div>
+                <p class="ability-desc">
+                    Instantly switches between "Day Mode" (no suit, high social presence) and "Night Mode"
+                    (full Black Hyena suit, all abilities active). Enemies will never know who they're truly facing.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WEAPON -->
+    <section class="weapon-section">
+        <h2 class="section-title">// WEAPON</h2>
+        <div class="weapon-card">
+            <div class="weapon-icon">🗡️</div>
+            <div class="weapon-info">
+                <div class="weapon-name">NIGHTFANG BLADES</div>
+                <div class="weapon-type">DUAL INTEGRATED BLADES — STEALTH CLASS</div>
+                <p class="weapon-desc">
+                    A pair of concealed blades integrated directly into the suit's forearms.
+                    Forged from an alloy not registered in any database — most likely a material acquired in space.
+                    Lightweight, sharp down to the molecular level, and reflects no light.
+                    Unlike the Astraeblade, which stands as a symbol of courage, the Nightfang Blades were designed for one purpose:
+                    <span style="color: #cc6666;">to kill without being known.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="quote-section">
+        <div class="quote-text">
+            "They call me a hero. They call me a villain. But they forget —
+            labels are only for those who need categories. Me? I'm beyond your categories."
+        </div>
+        <div class="quote-author">— SONY, THE BLACK HYENA</div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 EPIC WARS:Story of Future by DEMONSTRABLE</p>
+    </footer>
+
+</body>
+
+</html>
