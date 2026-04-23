@@ -52,18 +52,18 @@
             gap: 12px;
         }
 
-        .logo-container img {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            border: 1px solid rgba(128, 0, 0, 0.3);
-        }
+            .logo-container img {
+                width: 50px;
+                height: 50px;
+                border-radius: 8px;
+                border: 1px solid rgba(128, 0, 0, 0.3);
+            }
 
-        .logo-container h1 {
-            font-size: 1.2em;
-            color: #fff;
-            letter-spacing: 3px;
-        }
+            .logo-container h1 {
+                font-size: 1.2em;
+                color: #fff;
+                letter-spacing: 3px;
+            }
 
         .game-menu {
             display: flex;
@@ -71,28 +71,28 @@
             flex-wrap: wrap;
         }
 
-        .game-menu a {
-            text-decoration: none;
-            color: #999;
-            font-size: 0.7em;
-            letter-spacing: 2px;
-            padding: 8px 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 6px;
-            transition: 0.3s;
-        }
+            .game-menu a {
+                text-decoration: none;
+                color: #999;
+                font-size: 0.7em;
+                letter-spacing: 2px;
+                padding: 8px 16px;
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 6px;
+                transition: 0.3s;
+            }
 
-        .game-menu a:hover {
-            color: #800000;
-            border-color: #800000;
-            box-shadow: 0 0 15px rgba(128, 0, 0, 0.3);
-        }
+                .game-menu a:hover {
+                    color: #800000;
+                    border-color: #800000;
+                    box-shadow: 0 0 15px rgba(128, 0, 0, 0.3);
+                }
 
-        .game-menu a.active {
-            color: #800000;
-            border-color: #800000;
-            background: rgba(128, 0, 0, 0.1);
-        }
+                .game-menu a.active {
+                    color: #800000;
+                    border-color: #800000;
+                    background: rgba(128, 0, 0, 0.1);
+                }
 
         /* ===== HERO WALLPAPER SECTION ===== */
         .hero-wallpaper {
@@ -100,39 +100,32 @@
             width: 100%;
             height: 100vh;
             min-height: 600px;
-            background: url('SONY.jpg') center center / cover no-repeat;
             display: flex;
             align-items: flex-end;
             justify-content: flex-start;
         }
 
-        .hero-wallpaper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.3) 0%,
-                rgba(0, 0, 0, 0.1) 30%,
-                rgba(0, 0, 0, 0.4) 60%,
-                rgba(10, 10, 10, 1) 100%
-            );
-            z-index: 1;
-        }
+            .hero-wallpaper::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient( to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 0.4) 60%, rgba(10, 10, 10, 1) 100% );
+                z-index: 1;
+            }
 
-        .hero-wallpaper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(128, 0, 0, 0.1) 0%, transparent 70%);
-            z-index: 1;
-        }
+            .hero-wallpaper::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(ellipse at center, rgba(128, 0, 0, 0.1) 0%, transparent 70%);
+                z-index: 1;
+            }
 
         .hero-content {
             position: relative;
@@ -151,14 +144,18 @@
             text-decoration: none;
             letter-spacing: 2px;
             margin-bottom: 20px;
-            opacity: 0.7;
+            padding: 8px 18px;
+            border: 1px solid rgba(128, 0, 0, 0.4);
+            border-radius: 6px;
+            background: rgba(128, 0, 0, 0.1);
             transition: 0.3s;
             text-shadow: 0 0 10px rgba(0,0,0,0.8);
         }
 
-        .back-link:hover {
-            opacity: 1;
-        }
+            .back-link:hover {
+                background: rgba(128, 0, 0, 0.2);
+                box-shadow: 0 0 15px rgba(128, 0, 0, 0.3);
+            }
 
         .char-alias {
             font-size: 0.8em;
@@ -234,10 +231,10 @@
             transition: 0.3s;
         }
 
-        .stat-box:hover {
-            border-color: #800000;
-            box-shadow: 0 0 20px rgba(128, 0, 0, 0.2);
-        }
+            .stat-box:hover {
+                border-color: #800000;
+                box-shadow: 0 0 20px rgba(128, 0, 0, 0.2);
+            }
 
         .stat-label {
             font-size: 0.6em;
@@ -285,21 +282,24 @@
             color: #999;
             line-height: 2;
             letter-spacing: 0.5px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .lore-content p {
-            margin-bottom: 20px;
-        }
+            .lore-content p {
+                margin-bottom: 20px;
+            }
 
-        .lore-content .highlight {
-            color: #cc6666;
-            font-weight: 700;
-        }
+            .lore-content .highlight {
+                color: #cc6666;
+                font-weight: 700;
+            }
 
-        .lore-content .dark-highlight {
-            color: #800000;
-            font-weight: 700;
-        }
+            .lore-content .dark-highlight {
+                color: #800000;
+                font-weight: 700;
+            }
 
         /* ===== ABILITIES SECTION ===== */
         .abilities-section {
@@ -324,22 +324,22 @@
             overflow: hidden;
         }
 
-        .ability-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: #800000;
-            border-radius: 2px;
-        }
+            .ability-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 4px;
+                height: 100%;
+                background: #800000;
+                border-radius: 2px;
+            }
 
-        .ability-card:hover {
-            border-color: rgba(128, 0, 0, 0.4);
-            box-shadow: 0 0 25px rgba(128, 0, 0, 0.15);
-            transform: translateY(-3px);
-        }
+            .ability-card:hover {
+                border-color: rgba(128, 0, 0, 0.4);
+                box-shadow: 0 0 25px rgba(128, 0, 0, 0.15);
+                transform: translateY(-3px);
+            }
 
         .ability-name {
             font-size: 0.85em;
@@ -381,10 +381,10 @@
             transition: 0.3s;
         }
 
-        .weapon-card:hover {
-            border-color: #800000;
-            box-shadow: 0 0 30px rgba(128, 0, 0, 0.2);
-        }
+            .weapon-card:hover {
+                border-color: #800000;
+                box-shadow: 0 0 30px rgba(128, 0, 0, 0.2);
+            }
 
         .weapon-icon {
             width: 100px;
@@ -401,8 +401,13 @@
         }
 
         @keyframes weaponPulse {
-            0% { box-shadow: 0 0 10px rgba(128, 0, 0, 0.1); }
-            100% { box-shadow: 0 0 25px rgba(128, 0, 0, 0.3); }
+            0% {
+                box-shadow: 0 0 10px rgba(128, 0, 0, 0.1);
+            }
+
+            100% {
+                box-shadow: 0 0 25px rgba(128, 0, 0, 0.3);
+            }
         }
 
         .weapon-info {
@@ -463,11 +468,11 @@
             background: rgba(0, 0, 0, 0.5);
         }
 
-        footer p {
-            font-size: 0.6em;
-            color: #444;
-            letter-spacing: 2px;
-        }
+            footer p {
+                font-size: 0.6em;
+                color: #444;
+                letter-spacing: 2px;
+            }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
@@ -507,12 +512,11 @@
         </div>
         <nav class="game-menu">
             <a href="index.html">HOME</a>
-
         </nav>
     </header>
 
     <!-- HERO WALLPAPER -->
-    <section class="hero-wallpaper">
+    <section class="hero-wallpaper" style="background-image: url('SONY.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
         <div class="hero-content">
             <a href="characters.html" class="back-link">← BACK TO CHARACTERS</a>
             <div class="char-alias">THE BLACK HYENA</div>
@@ -523,8 +527,8 @@
                 "Justice does not belong to those in power. Justice belongs to those brave enough to claim it in the dark."
             </div>
             <p class="char-desc">
-                A man with two faces. By day, he is known as an influential figure — wealthy, brilliant, and untouchable. 
-                But when night falls, he becomes a shadow that cannot be traced. Taking no one's side. 
+                A man with two faces. By day, he is known as an influential figure — wealthy, brilliant, and untouchable.
+                But when night falls, he becomes a shadow that cannot be traced. Taking no one's side.
                 Moving only by his own code.
             </p>
         </div>
@@ -577,58 +581,40 @@
         <h2 class="section-title">📖 LORE</h2>
         <div class="lore-content">
             <p>
-                <span class="dark-highlight">BlackThorn City</span> — a city built on a foundation of lies. 
-                Its government is corrupt. Its police are bought. Its people are divided. In this city, massive protests 
-                erupt almost every night — yet nothing ever changes. Justice is nothing more than an empty word 
-                spoken by those who have never experienced hunger.
+                <span class="dark-highlight">BlackThorn.</span> A city drowning in corruption, crime, and endless riots that never seem to stop. This is where a young child grew up — abandoned by his family, left behind by an unjust wave of massive protests. He grew up alone. Only hatred kept him company.
             </p>
             <p>
-                Amidst the chaos, a young boy lost everything. His family was <span class="highlight">left behind</span> — 
-                not because they chose to leave, but because the system stripped away their rights one by one. 
-                His parents joined a demonstration that ended in a violent crackdown. They never came back.
+                The child chose the dark path. Surviving by any means necessary. Stealing. Joining street gangs. Becoming one of the most feared figures in BlackThorn — not because of his strength, but because of his <span class="highlight">mind</span>.
             </p>
             <p>
-                The boy grew up alone on the streets of BlackThorn. He learned to survive — not through kindness, 
-                but through <span class="dark-highlight">intelligence and crime</span>. His first theft at age 10. 
-                Joining a street gang at 13. Becoming one of the masterminds behind BlackThorn's biggest illegal operations by 16.
+                Yet beneath all of that, something was different. <span class="highlight">Technology spoke to him</span> in ways that could not be explained. The child understood it, created it, built it from nothing — from scraps, from stolen parts, from pure intelligence that no school ever taught him.
             </p>
             <p>
-                But there was something different about him. Beneath the sharpness and brutality, 
-                there was a <span class="highlight">fire that never died</span> — an anger that didn't just want to destroy, 
-                but wanted to <span class="highlight">change</span>.
+                And slowly, it changed him.
             </p>
             <p>
-                One night, after a mission that nearly cost him his life, he discovered something 
-                in the ruins of an old lab outside the city — <span class="dark-highlight">technology that shouldn't exist</span>. 
-                Technology that didn't come from BlackThorn. Technology that didn't even come from Earth.
+                The young man built his own suit — <span class="dark-highlight">black, silent, and lethal</span>. By night he roamed as The Black Hyena — taking no side, fighting all that was wrong from every direction. By day he was known as a successful figure that no one ever suspected. <span class="highlight">Two faces. One soul.</span>
             </p>
             <p>
-                That was the turning point. He was no longer just a thief. He became something <span class="highlight">greater</span>.
+                No one knew both were the same person.
             </p>
             <p>
-                With an intelligence already far above average, he studied the alien technology in a matter of months. 
-                He built a <span class="dark-highlight">combat suit</span> — black, silent, and lethal. 
-                He built a <span class="dark-highlight">rocket</span> from scrap parts and stolen components. 
-                And he did something no one in BlackThorn believed was possible.
+                Until one day, the young man looked up at the sky and decided — he wanted to know what lay beyond. With a rocket built entirely by his own hands, he <span class="dark-highlight">launched himself away from BlackThorn</span>. And out in space, he witnessed three great factions tearing each other apart over cosmic power.
             </p>
             <p>
-                <span class="highlight">He flew into space.</span>
+                He saw the same injustice he had always known — just on a far greater scale.
             </p>
             <p>
-                No one knew where he went. But when he returned years later, 
-                he was no longer a street kid from BlackThorn. He was something else entirely.
+                And for the first time in his life, <span class="highlight">he chose a side</span>.
             </p>
             <p>
-                By day, he emerged as a new figure — wealthy, influential, and seemingly unconnected to anything dark. 
-                <span class="highlight">A Bruce Wayne vibe meeting Tony Stark</span>, but colder. More distant. Harder to read.
+                Not because he was ordered to. Not because he was paid. But because The Authority of Galaxy reminded him of something he had buried long ago — <span class="dark-highlight">the belief that somewhere, somehow, justice still meant something</span>.
             </p>
             <p>
-                By night... he became <span class="dark-highlight">The Black Hyena</span>. 
-                A shadow moving between the corridors of power. 
-                Taking neither the side of The Authority of Galaxy, nor Queen Nathasias, nor anyone else.
+                He joined them.
             </p>
             <p>
-                He only stood for one thing: <span class="highlight">the truth that all sides have buried.</span>
+                And the galaxy would never be the same.
             </p>
         </div>
     </section>
@@ -642,7 +628,7 @@
                 <div class="ability-name">👁️ SHADOW VEIL</div>
                 <div class="ability-type">Passive — Stealth</div>
                 <p class="ability-desc">
-                    His suit absorbs surrounding light, making him virtually invisible in darkness. 
+                    His suit absorbs surrounding light, making him virtually invisible in darkness.
                     Even the most advanced sensors struggle to detect his presence when this ability is active.
                 </p>
             </div>
@@ -651,7 +637,7 @@
                 <div class="ability-name">🌐 HACK REALITY</div>
                 <div class="ability-type">Active — Technology Manipulation</div>
                 <p class="ability-desc">
-                    Using a hidden neural antenna inside his helmet, he can infiltrate any system — 
+                    Using a hidden neural antenna inside his helmet, he can infiltrate any system —
                     from simple security networks to alien military mainframes — in a matter of seconds.
                 </p>
             </div>
@@ -660,7 +646,7 @@
                 <div class="ability-name">🦷 HYENA'S BITE</div>
                 <div class="ability-type">Active — Combat</div>
                 <p class="ability-desc">
-                    A swift and lethal strike using concealed blades in the suit's forearms. 
+                    A swift and lethal strike using concealed blades in the suit's forearms.
                     Not as powerful as the Astraeblade, but far faster. Designed to kill before the enemy realizes what happened.
                 </p>
             </div>
@@ -669,7 +655,7 @@
                 <div class="ability-name">🪐 ZERO GRAVITY SHIFT</div>
                 <div class="ability-type">Active — Mobility</div>
                 <p class="ability-desc">
-                    A miniature gravity module in his suit allows him to move unbound by gravity for up to 8 seconds. 
+                    A miniature gravity module in his suit allows him to move unbound by gravity for up to 8 seconds.
                     Used for impossible maneuvers — running on walls, hovering in mid-air, or escaping any situation.
                 </p>
             </div>
@@ -678,7 +664,7 @@
                 <div class="ability-name">🛰️ INTEL NETWORK</div>
                 <div class="ability-type">Passive — Information</div>
                 <p class="ability-desc">
-                    An underground information network he built over years. 
+                    An underground information network he built over years.
                     He knows almost everything about every faction — secrets that even The Authority of Galaxy itself is unaware of.
                 </p>
             </div>
@@ -687,7 +673,7 @@
                 <div class="ability-name">🔄 DUAL IDENTITY</div>
                 <div class="ability-type">Ultimate — Transformation</div>
                 <p class="ability-desc">
-                    Instantly switches between "Day Mode" (no suit, high social presence) and "Night Mode" 
+                    Instantly switches between "Day Mode" (no suit, high social presence) and "Night Mode"
                     (full Black Hyena suit, all abilities active). Enemies will never know who they're truly facing.
                 </p>
             </div>
@@ -704,10 +690,10 @@
                 <div class="weapon-name">NIGHTFANG BLADES</div>
                 <div class="weapon-type">DUAL INTEGRATED BLADES — STEALTH CLASS</div>
                 <p class="weapon-desc">
-                    A pair of concealed blades integrated directly into the suit's forearms. 
-                    Forged from an alloy not registered in any database — most likely a material acquired in space. 
-                    Lightweight, sharp down to the molecular level, and reflects no light. 
-                    Unlike the Astraeblade, which stands as a symbol of courage, the Nightfang Blades were designed for one purpose: 
+                    A pair of concealed blades integrated directly into the suit's forearms.
+                    Forged from an alloy not registered in any database — most likely a material acquired in space.
+                    Lightweight, sharp down to the molecular level, and reflects no light.
+                    Unlike the Astraeblade, which stands as a symbol of courage, the Nightfang Blades were designed for one purpose:
                     <span style="color: #cc6666;">to kill without being known.</span>
                 </p>
             </div>
@@ -717,7 +703,7 @@
     <!-- QUOTE -->
     <section class="quote-section">
         <div class="quote-text">
-            "They call me a hero. They call me a villain. But they forget — 
+            "They call me a hero. They call me a villain. But they forget —
             labels are only for those who need categories. Me? I'm beyond your categories."
         </div>
         <div class="quote-author">— SONY, THE BLACK HYENA</div>
@@ -729,5 +715,4 @@
     </footer>
 
 </body>
-
 </html>
