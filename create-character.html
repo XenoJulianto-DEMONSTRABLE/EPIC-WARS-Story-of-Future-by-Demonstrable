@@ -21,15 +21,36 @@
             box-sizing: border-box;
         }
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: #0a0a0a;
-            font-family: 'Orbitron', sans-serif;
-            color: #e0e0e0;
-            overflow-x: hidden;
-        }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at center, #0b0b2a, #000);
+    font-family: 'Orbitron', sans-serif;
+    color: #e0e0e0;
+    overflow-x: hidden;
+}
+
+        body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: url("https://www.transparenttextures.com/patterns/stardust.png");
+    animation: galaxyMove 60s linear infinite;
+    opacity: 0.3;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes galaxyMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-500px, -500px);
+    }
+}
 
         /* NAVBAR */
         nav {
