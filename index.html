@@ -214,21 +214,54 @@
     </div>
 
     <header>
-        <h1>
-            <img src="EWSF-logo.png" alt="Logo"
-                 style="width: 90px; height: 90px; margin-right: 10px; vertical-align: middle;">
-            EPIC WARS:Story of Future
-        </h1>
+        <div class="logo-container">
+            <img src="EWSF-logo.png" alt="Logo" class="logo">
+            <h1>EPIC WARS: Story of Future</h1>
+        </div>
+
         <nav class="game-menu">
-            <a href="index.html">HOME</a>
-            <a href="characters.html">CHARACTERS</a>
-            <a href="story.html">STORY</a>
-            <a href="login.html">LOGIN</a>
+            <a href="index.html" class="nav-btn">HOME</a>
+            <a href="characters.html" class="nav-btn">CHARACTERS</a>
+            <a href="story.html" class="nav-btn">STORY</a>
+            <a href="login.html" class="nav-btn">LOGIN</a>
         </nav>
     </header>
 
+
     <section class="about">
         <h1>Welcome to the world of EPIC WARS:Story of Future Website</h1>
+
+
+        <div style="text-align: center; margin-top: -200px; margin-bottom: 50px;">
+            <a href="create-character.html" style="
+        display: inline-block;
+        padding: 18px 40px;
+        background: transparent;
+        border: 2px solid #ff6600;
+        color: #ff6600;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1em;
+        letter-spacing: 3px;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 0 20px rgba(255,102,0,0.4);
+        transition: 0.3s;
+        animation: orangePulse 2s ease-in-out infinite alternate;
+    ">⚔️ Wanna Create Your Own Character?</a>
+        </div>
+
+        <style>
+            @keyframes orangePulse {
+                0% {
+                    box-shadow: 0 0 20px rgba(255,102,0,0.4);
+                }
+
+                100% {
+                    box-shadow: 0 0 40px rgba(255,102,0,0.8);
+                }
+            }
+        </style>
+
 
         <!-- SECTION LORE -->
         <section class="lore-section">
