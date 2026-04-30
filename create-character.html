@@ -683,8 +683,15 @@
             a.click();
         }
 
-        // ===== SUBMIT TO DEVELOPER =====
-        // (Fungsi ini akan ditimpa oleh yang di java.script, jadi biarkan saja)
+    </script>
+
+
+    <!-- GANTI script.js dengan inline script -->
+    <script>
+        const IMGBB_API_KEY = "c30ecdbbfbeb7855dd7edb64d276e2b8";
+        const EMAILJS_SERVICE = "service_a8iwzll";
+        const EMAILJS_TEMPLATE = "template_o7auf65";
+
         function submitToDeveloper(source) {
             var user = localStorage.getItem("user");
 
@@ -708,12 +715,76 @@
                 imageData = canvas.toDataURL("image/png");
             }
 
-            // TODO: Send Image to The Developer (EmailJS / dll)
-            alert("Thank you " + user + "! Your character has been submitted to the developer!");
+            var allBtns = document.querySelectorAll(".submit-btn");
+            allBtns.forEach(function (btn) {
+                btn.classList.add("loading");
+                btn.innerHTML = "⏳ UPLOADING & SENDING...";
+            });
+
+            uploadToImgbb(imageData)
+                .then(function (imageUrl) {
+                    return sendEmail(user, imageUrl);
+                })
+                .then(function () {
+                    alert("Thank you " + user + "! Your character has been submitted to the developer!");
+                })
+                .catch(function (error) {
+                    alert("Failed to submit character. Please try again.\n\nError: " + error);
+                })
+                .finally(function () {
+                    allBtns.forEach(function (btn) {
+                        btn.classList.remove("loading");
+                        btn.innerHTML = "📨 SUBMIT TO DEVELOPER";
+                    });
+                });
         }
 
+        function uploadToImgbb(base64String) {
+            return new Promise(function (resolve, reject) {
+                var base64Data = base64String.split(",")[1];
+                var formData = new FormData();
+                formData.append("key", IMGBB_API_KEY);
+                formData.append("image", base64Data);
+
+                fetch("https://api.imgbb.com/1/upload", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(function (response) { return response.json(); })
+                    .then(function (result) {
+                        if (result.success) {
+                            resolve(result.data.url);
+                        } else {
+                            reject("Upload failed: " + result.error.message);
+                        }
+                    })
+                    .catch(function (error) {
+                        reject("Cannot connect to imgbb: " + error);
+                    });
+            });
+        }
+
+        function sendEmail(userName, imageUrl) {
+            return new Promise(function (resolve, reject) {
+                var templateParams = {
+                    from_name: userName,
+                    character_image: imageUrl
+                };
+
+                emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, templateParams)
+                    .then(function (response) {
+                        if (response.status === 200) {
+                            resolve();
+                        } else {
+                            reject("EmailJS status: " + response.status);
+                        }
+                    })
+                    .catch(function (error) {
+                        reject("EmailJS error: " + (error.text || error));
+                    });
+            });
+        }
     </script>
 
-    <script src="script.js"></script>
 </body>
 </html>
