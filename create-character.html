@@ -418,10 +418,13 @@
 
             <input type="file" id="uploadInput" accept="image/*" onchange="previewUpload(event)">
 
-            <div class="upload-preview-wrapper" id="previewWrapper">
-                <button class="remove-img-btn" onclick="removeUpload()">✕</button>
-                <img id="uploadPreview" src="" alt="Preview">
-            </div>
+<div class="upload-preview-wrapper" id="previewWrapper">
+    <button class="remove-img-btn" onclick="removeUpload()">✕</button>
+    <img id="uploadPreview" src="" alt="Preview">
+</div>
+<button class="action-btn submit-btn" style="width:100%; margin-top:10px; padding:15px;" onclick="submitToDeveloper('upload')">
+    📨 SUBMIT TO DEVELOPER
+</button>
         </div>
 
         <!-- DRAW SECTION -->
@@ -433,9 +436,6 @@
                 <button class="tool-btn active" id="btnBrush" onclick="setTool('brush')">✏️ BRUSH</button>
                 <button class="tool-btn" id="btnEraser" onclick="setTool('eraser')">🧹 ERASER</button>
                 <button class="tool-btn" id="btnFill" onclick="setTool('fill')">🪣 FILL</button>
-                <button class="action-btn submit-btn" onclick="submitToDeveloper('draw')">
-                    📨 SUBMIT TO DEVELOPER
-                </button>
                 <span class="color-picker-label">COLOR:</span>
                 <input type="color" id="colorPicker" value="#ff6600">
                 <span class="color-picker-label">SIZE:</span>
@@ -492,14 +492,11 @@
             }
         }
 
-        function removeUpload() {
-            document.getElementById('previewWrapper').style.display =
-            <button class="action-btn submit-btn" style="width:100%; margin-top:10px;" onclick="submitToDeveloper('upload')">
-                📨 SUBMIT TO DEVELOPER
-            </button>;
-            document.getElementById('uploadPreview').src = '';
-            document.getElementById('uploadInput').value = '';
-        }
+function removeUpload() {
+    document.getElementById('previewWrapper').style.display = 'none';
+    document.getElementById('uploadPreview').src = '';
+    document.getElementById('uploadInput').value = '';
+}
 
 
         // ===== CANVAS DRAWING =====
