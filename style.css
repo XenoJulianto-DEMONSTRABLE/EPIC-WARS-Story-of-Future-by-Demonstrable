@@ -1,4 +1,9 @@
 
+.create-page {
+    flex: 1;
+    padding: 40px 20px;
+}
+
 .char-alias {
     font-size: 0.8em;
     color: #800000;
@@ -234,13 +239,18 @@
     animation: rainbowBorder 3s linear infinite;
 }
 
+/* ✅ GANTI JADI */
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
     background: radial-gradient(circle at center, #0b0b2a, #000);
     color: white;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
 
     /* GALAXY BACKGROUND */
     body::before {
@@ -698,12 +708,14 @@ button {
 }
 
 
+/* ✅ GANTI JADI */
 footer {
     text-align: center;
-    padding: 70px;
+    padding: 20px;
     background: black;
-    margin-top: 20px;
+    margin-top: auto;
 }
+
 
 /* ==================== NAVBAR SMALL & CLEAN (sama seperti story.html) ==================== */
 header {
