@@ -282,17 +282,27 @@
 }
 
 /* ✅ GANTI JADI */
-body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: radial-gradient(circle at center, #0b0b2a, #000);
-    color: white;
-    overflow-x: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: url("https://www.transparenttextures.com/patterns/stardust.png");
+    animation: galaxyMove 60s linear infinite;
+    opacity: 0.3;
+    z-index: -1;
+    pointer-events: none;
 }
 
+@keyframes galaxyMove {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-500px, -500px);
+    }
+}
 
     /* GALAXY BACKGROUND */
     body::before {
