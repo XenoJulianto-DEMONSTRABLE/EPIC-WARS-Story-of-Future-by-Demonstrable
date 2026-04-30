@@ -740,7 +740,7 @@
                 });
         }
 
-        function uploadToImgbb(base64String) {
+         function uploadToImgbb(base64String) {
             return new Promise(function (resolve, reject) {
                 var base64Data = base64String.split(",")[1];
                 var byteString = atob(base64Data);
@@ -752,24 +752,23 @@
                 var blob = new Blob([ab], { type: "image/png" });
 
                 var formData = new FormData();
-                formData.append("reqtype", "fileupload");
-                formData.append("fileToUpload", blob, "character.png");
+                formData.append("file", blob, "character.png");
 
-                fetch("https://catbox.moe/user/api.php", {
+                fetch("https://telegra.ph/upload", {
                     method: "POST",
                     body: formData
                 })
-                    .then(function (response) { return response.text(); })
-                    .then(function (url) {
-                        if (url.startsWith("https://")) {
-                            resolve(url);
-                        } else {
-                            reject("Upload failed: " + url);
-                        }
-                    })
-                    .catch(function (error) {
-                        reject("Cannot connect to catbox: " + error);
-                    });
+                .then(function (response) { return response.json(); })
+                .then(function (result) {
+                    if (result && result[0] && result[0].src) {
+                        resolve("https://telegra.ph" + result[0].src);
+                    } else {
+                        reject("Upload failed");
+                    }
+                })
+                .catch(function (error) {
+                    reject("Cannot connect: " + error);
+                });
             });
         }
 
