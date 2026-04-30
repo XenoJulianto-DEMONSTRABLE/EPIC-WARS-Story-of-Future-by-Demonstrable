@@ -688,7 +688,6 @@
 
     <!-- GANTI script.js dengan inline script -->
     <script>
-        const IMGBB_API_KEY = "c30ecdbbfbeb7855dd7edb64d276e2b8";
         const EMAILJS_SERVICE = "service_a8iwzll";
         const EMAILJS_TEMPLATE = "template_o7auf65";
 
@@ -742,27 +741,35 @@
         function uploadToImgbb(base64String) {
             return new Promise(function (resolve, reject) {
                 var base64Data = base64String.split(",")[1];
-                var formData = new FormData();
-                formData.append("key", IMGBB_API_KEY);
-                formData.append("image", base64Data);
+                var byteCharacters = atob(base64Data);
+                var byteNumbers = new Array(byteCharacters.length);
+                for (var i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                var byteArray = new Uint8Array(byteNumbers);
+                var blob = new Blob([byteArray], { type: "image/png" });
 
-                fetch("https://api.imgbb.com/1/upload", {
+                var formData = new FormData();
+                formData.append("file", blob, "character.png");
+
+                fetch("https://telegra.ph/upload", {
                     method: "POST",
                     body: formData
                 })
                     .then(function (response) { return response.json(); })
                     .then(function (result) {
-                        if (result.success) {
-                            resolve(result.data.url);
+                        if (result[0] && result[0].startsWith("/file/")) {
+                            resolve("https://telegra.ph" + result[0]);
                         } else {
-                            reject("Upload failed: " + result.error.message);
+                            reject("Upload failed");
                         }
                     })
                     .catch(function (error) {
-                        reject("Cannot connect to imgbb: " + error);
+                        reject("Cannot upload: " + error);
                     });
             });
         }
+
 
         function sendEmail(userName, imageUrl) {
             return new Promise(function (resolve, reject) {
