@@ -9,6 +9,9 @@
         gtag('config', 'G-RESM87LKGB');
     </script>
 
+    <!-- ✅ PERUBAHAN 1: Tambah library EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <meta charset="utf-8" />
     <title>Create Your Character - EPIC WARS</title>
     <link rel="icon" href="logo.png">
@@ -369,6 +372,12 @@
                 color: #444;
                 letter-spacing: 2px;
             }
+
+        /* ✅ PERUBAHAN 2: Tambah CSS loading untuk tombol */
+        .submit-btn.loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -418,13 +427,13 @@
 
             <input type="file" id="uploadInput" accept="image/*" onchange="previewUpload(event)">
 
-<div class="upload-preview-wrapper" id="previewWrapper">
-    <button class="remove-img-btn" onclick="removeUpload()">✕</button>
-    <img id="uploadPreview" src="" alt="Preview">
-</div>
-<button class="action-btn submit-btn" style="width:100%; margin-top:10px; padding:15px;" onclick="submitToDeveloper('upload')">
-    📨 SUBMIT TO DEVELOPER
-</button>
+            <div class="upload-preview-wrapper" id="previewWrapper">
+                <button class="remove-img-btn" onclick="removeUpload()">✕</button>
+                <img id="uploadPreview" src="" alt="Preview">
+            </div>
+            <button class="action-btn submit-btn" style="width:100%; margin-top:10px; padding:15px;" onclick="submitToDeveloper('upload')">
+                📨 SUBMIT TO DEVELOPER
+            </button>
         </div>
 
         <!-- DRAW SECTION -->
@@ -449,9 +458,10 @@
                 <button class="action-btn" onclick="downloadDrawing()">⬇️ SAVE & DOWNLOAD</button>
                 <button class="action-btn" onclick="undoDrawing()">↩️ UNDO</button>
                 <button class="action-btn danger" onclick="clearCanvas()">🗑️ CLEAR ALL</button>
-                <button class="action-btn submit-btn" style="width:100%; margin-top:10px; padding:15px;" onclick="submitToDeveloper('upload')">
-    📨 SUBMIT TO DEVELOPER
-</button>
+                <!-- ✅ PERUBAHAN 3: 'upload' diganti 'draw' -->
+                <button class="action-btn submit-btn" style="width:100%; margin-top:10px; padding:15px;" onclick="submitToDeveloper('draw')">
+                    📨 SUBMIT TO DEVELOPER
+                </button>
             </div>
         </div>
 
@@ -462,6 +472,9 @@
     </footer>
 
     <script>
+        // ✅ PERUBAHAN 4: Init EmailJS (wajib di sini, setelah library di head)
+        emailjs.init("dfXscLfa0nVIYMR3Q");
+
         // ===== NAVIGATION =====
         function showChoice() {
             document.getElementById('choiceContainer').style.display = 'flex';
@@ -495,11 +508,11 @@
             }
         }
 
-function removeUpload() {
-    document.getElementById('previewWrapper').style.display = 'none';
-    document.getElementById('uploadPreview').src = '';
-    document.getElementById('uploadInput').value = '';
-}
+        function removeUpload() {
+            document.getElementById('previewWrapper').style.display = 'none';
+            document.getElementById('uploadPreview').src = '';
+            document.getElementById('uploadInput').value = '';
+        }
 
 
         // ===== CANVAS DRAWING =====
@@ -671,6 +684,7 @@ function removeUpload() {
         }
 
         // ===== SUBMIT TO DEVELOPER =====
+        // (Fungsi ini akan ditimpa oleh yang di java.script, jadi biarkan saja)
         function submitToDeveloper(source) {
             var user = localStorage.getItem("user");
 
