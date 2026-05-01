@@ -20,6 +20,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
+
+        /* ========================================
+           VORRATH LIGHTNING EFFECT
+           ======================================== */
+        #vorrath-card {
+            cursor: pointer;
+            position: relative;
+        }
+
+            #vorrath-card .lightning-canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 10;
+                opacity: 0;
+                transition: opacity 0.1s;
+            }
+
+            #vorrath-card.striking .lightning-canvas {
+                opacity: 1;
+            }
+
+            #vorrath-card.striking {
+                animation: vorrathShake 0.15s ease-in-out 4;
+            }
+
+        @keyframes vorrathShake {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-4px, 2px);
+            }
+
+            50% {
+                transform: translate(4px, -2px);
+            }
+
+            75% {
+                transform: translate(-2px, 4px);
+            }
+
+            100% {
+                transform: translate(2px, -4px);
+            }
+        }
+
         .epic-bg {
             position: fixed;
             top: 0;
@@ -187,16 +238,15 @@
             overflow: hidden;
             background-size: cover !important;
             background-position: center !important;
-            height: 300px;
-            width: 220px;
+            height: 320px;
         }
 
         .lore-card-content {
             position: absolute;
             top: 0;
             left: 0;
-            width: 90%;
-            height: 110%;
+            width: 100%;
+            height: 100%;
             background: rgba(0, 0, 0, 0.85);
             padding: 30px 20px;
             display: flex;
@@ -309,7 +359,7 @@
                     </div>
 
                     <!-- Card 2: Vorrath (gambar belum ada, nanti tambah style="background-image: url('...');") -->
-                    <div class="lore-card" style="background-image: url('VORRATH.png');">
+                    <div class="lore-card" id="vorrath-card" style="background-image: url('VORRATH.png');">
                         <div class="lore-card-content">
                             <div class="lore-icon">👹</div>
                             <h3>Vorrath</h3>
@@ -317,7 +367,7 @@
                         </div>
                     </div>
 
-                     <!-- Card 3: The Great War ✅ -->
+                    <!-- Card 3: The Great War ✅ -->
                     <div class="lore-card" style="background-image: url('SONY2.png');">
                         <div class="lore-card-content">
                             <div class="lore-icon">⚔️</div>
@@ -362,5 +412,141 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
-</html>
+
+    <script>
+        // ========================================
+        // VORRATH LIGHTNING EFFECT
+        // ========================================
+        (function () {
+            var card = document.getElementById("vorrath-card");
+            if (!card) return;
+
+            // Buat canvas untuk petir
+            var canvas = document.createElement("canvas");
+            canvas.className = "lightning-canvas";
+            card.appendChild(canvas);
+
+            var ctx = canvas.getContext("2d");
+            var striking = false;
+
+            function resizeCanvas() {
+                canvas.width = card.offsetWidth;
+                canvas.height = card.offsetHeight;
+            }
+            resizeCanvas();
+            window.addEventListener("resize", resizeCanvas);
+
+            // Gambar satu petir
+            function drawBolt(x1, y1, x2, y2, color, width) {
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+
+                var segments = 8 + Math.floor(Math.random() * 6);
+                var dx = (x2 - x1) / segments;
+                var dy = (y2 - y1) / segments;
+
+                for (var i = 1; i < segments; i++) {
+                    var px = x1 + dx * i + (Math.random() - 0.5) * 40;
+                    var py = y1 + dy * i + (Math.random() - 0.5) * 20;
+                    ctx.lineTo(px, py);
+                }
+                ctx.lineTo(x2, y2);
+
+                // Glow luar
+                ctx.strokeStyle = color;
+                ctx.lineWidth = width + 6;
+                ctx.shadowColor = color;
+                ctx.shadowBlur = 25;
+                ctx.globalAlpha = 0.4;
+                ctx.stroke();
+
+                // Glow dalam
+                ctx.lineWidth = width + 2;
+                ctx.shadowBlur = 10;
+                ctx.globalAlpha = 0.7;
+                ctx.stroke();
+
+                // Core putih
+                ctx.strokeStyle = "#ffffff";
+                ctx.lineWidth = width;
+                ctx.shadowColor = "#ffffff";
+                ctx.shadowBlur = 5;
+                ctx.globalAlpha = 0.9;
+                ctx.stroke();
+
+                ctx.globalAlpha = 1;
+                ctx.shadowBlur = 0;
+            }
+
+            // Gambar kilat penuh
+            function strikeLightning() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                var w = canvas.width;
+                var h = canvas.height;
+
+                // Warna pink-ungu acak
+                var colors = [
+                    "#ff00ff",
+                    "#cc00ff",
+                    "#9900ff",
+                    "#ff33cc",
+                    "#aa00ff",
+                    "#ff00aa"
+                ];
+
+                // 3-5 petir utama dari atas
+                var boltCount = 3 + Math.floor(Math.random() * 3);
+                for (var i = 0; i < boltCount; i++) {
+                    var startX = Math.random() * w;
+                    var endX = startX + (Math.random() - 0.5) * 100;
+                    var color = colors[Math.floor(Math.random() * colors.length)];
+                    var width = 1 + Math.random() * 2;
+                    drawBolt(startX, 0, endX, h, color, width);
+                }
+
+                // 2-3 petir cabang
+                for (var j = 0; j < 2 + Math.floor(Math.random() * 2); j++) {
+                    var sx = Math.random() * w;
+                    var sy = Math.random() * h * 0.5;
+                    var ex = sx + (Math.random() - 0.5) * 120;
+                    var ey = sy + h * 0.3 + Math.random() * h * 0.4;
+                    var c = colors[Math.floor(Math.random() * colors.length)];
+                    drawBolt(sx, sy, ex, ey, c, 0.5 + Math.random());
+                }
+            }
+
+            // Klik → petir
+            card.addEventListener("click", function () {
+                if (striking) return;
+                striking = true;
+                card.classList.add("striking");
+
+                // 3 kali kilat cepat
+                var count = 0;
+                var maxFlashes = 3 + Math.floor(Math.random() * 3);
+
+                function flash() {
+                    strikeLightning();
+                    count++;
+                    if (count < maxFlashes) {
+                        setTimeout(function () {
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            setTimeout(flash, 30 + Math.random() * 60);
+                        }, 40 + Math.random() * 50);
+                    } else {
+                        setTimeout(function () {
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            card.classList.remove("striking");
+                            striking = false;
+                        }, 200);
+                    }
+                }
+                flash();
+            });
+        })();
+    </script>
+
+
+</body >
+</html >
