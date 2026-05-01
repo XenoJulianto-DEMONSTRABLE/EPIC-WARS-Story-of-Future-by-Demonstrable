@@ -495,7 +495,6 @@
 
         function submitToDeveloper(source) {
             var user = localStorage.getItem("user");
-            if (!user) { alert("Please login first!"); window.location.href = "login.html"; return; }
 
             var imageData = "";
             if (source === "upload") {
