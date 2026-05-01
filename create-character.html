@@ -740,7 +740,7 @@
                 });
         }
 
-         function uploadToImgbb(base64String) {
+        function uploadToImgbb(base64String) {
             return new Promise(function (resolve, reject) {
                 var base64Data = base64String.split(",")[1];
                 var byteString = atob(base64Data);
@@ -758,19 +758,20 @@
                     method: "POST",
                     body: formData
                 })
-                .then(function (response) { return response.json(); })
-                .then(function (result) {
-                    if (result && result[0] && result[0].src) {
-                        resolve("https://telegra.ph" + result[0].src);
-                    } else {
-                        reject("Upload failed");
-                    }
-                })
-                .catch(function (error) {
-                    reject("Cannot connect: " + error);
-                });
+                    .then(function (response) { return response.json(); })
+                    .then(function (result) {
+                        if (result && result[0] && result[0].src) {
+                            resolve("https://telegra.ph" + result[0].src);
+                        } else {
+                            reject("Upload failed");
+                        }
+                    })
+                    .catch(function (error) {
+                        reject("Cannot connect: " + error);
+                    });
             });
         }
+
 
 
         function sendEmail(userName, imageUrl) {
