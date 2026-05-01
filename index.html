@@ -180,6 +180,33 @@
             margin-top: 8px;
             font-family: 'Orbitron', sans-serif;
         }
+
+        /* ✅ TAMBAHAN: LORE CARD SLIDE REVEAL */
+        .lore-card {
+            position: relative;
+            overflow: hidden;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+
+        .lore-card-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease;
+        }
+
+        .lore-card:hover .lore-card-content {
+            transform: translateY(-100%);
+        }
     </style>
 </head>
 
@@ -262,7 +289,7 @@
         </style>
 
 
-        <!-- SECTION LORE -->
+        <!-- ✅ SECTION LORE (UDAH DIUBAH) -->
         <section class="lore-section">
             <div class="lore-container">
                 <h2 class="lore-title">⚔️ THE CHRONICLE BEGINS ⚔️</h2>
@@ -270,32 +297,40 @@
 
                 <div class="lore-cards">
 
-                    <!-- Card 1 -->
-                    <div class="lore-card">
-                        <div class="lore-icon">🌌</div>
-                        <h3>Nexus Infinitum</h3>
-                        <p>"It is not a place, not a creature, not a weapon. It is the very foundation of existence itself."</p>
+                    <!-- Card 1: Nexus Infinitum ✅ GAMBAR UDAH ADA -->
+                    <div class="lore-card" style="background-image: url('The Nexus Infinitum.jpg');">
+                        <div class="lore-card-content">
+                            <div class="lore-icon">🌌</div>
+                            <h3>Nexus Infinitum</h3>
+                            <p>"It is not a place, not a creature, not a weapon. It is the very foundation of existence itself."</p>
+                        </div>
                     </div>
 
-                    <!-- Card 2 -->
+                    <!-- Card 2: Vorrath (gambar belum ada, nanti tambah style="background-image: url('...');") -->
                     <div class="lore-card">
-                        <div class="lore-icon">👹</div>
-                        <h3>Vorrath</h3>
-                        <p>"It had only one instinct — to destroy everything. He is Vorrath. The Beast of Galaxy."</p>
+                        <div class="lore-card-content">
+                            <div class="lore-icon">👹</div>
+                            <h3>Vorrath</h3>
+                            <p>"It had only one instinct — to destroy everything. He is Vorrath. The Beast of Galaxy."</p>
+                        </div>
                     </div>
 
-                    <!-- Card 3 -->
+                    <!-- Card 3: The Great War (gambar belum ada) -->
                     <div class="lore-card">
-                        <div class="lore-icon">⚔️</div>
-                        <h3>The Great War</h3>
-                        <p>"Galaxies became battlefields. Dimensions collapsed one by one. The fate of all existence hung in the balance."</p>
+                        <div class="lore-card-content">
+                            <div class="lore-icon">⚔️</div>
+                            <h3>The Great War</h3>
+                            <p>"Galaxies became battlefields. Dimensions collapsed one by one. The fate of all existence hung in the balance."</p>
+                        </div>
                     </div>
 
-                    <!-- Card 4 -->
+                    <!-- Card 4: Earth (gambar belum ada) -->
                     <div class="lore-card">
-                        <div class="lore-icon">🌍</div>
-                        <h3>Earth</h3>
-                        <p>"Earth was no longer just a small forgotten planet. It had become the center of everything."</p>
+                        <div class="lore-card-content">
+                            <div class="lore-icon">🌍</div>
+                            <h3>Earth</h3>
+                            <p>"Earth was no longer just a small forgotten planet. It had become the center of everything."</p>
+                        </div>
                     </div>
 
                 </div>
