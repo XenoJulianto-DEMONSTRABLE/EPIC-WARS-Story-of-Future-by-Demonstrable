@@ -20,57 +20,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-
-        /* ========================================
-           VORRATH LIGHTNING EFFECT
-           ======================================== */
-        #vorrath-card {
-            cursor: pointer;
-            position: relative;
-        }
-
-            #vorrath-card .lightning-canvas {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                z-index: 10;
-                opacity: 0;
-                transition: opacity 0.1s;
-            }
-
-            #vorrath-card.striking .lightning-canvas {
-                opacity: 1;
-            }
-
-            #vorrath-card.striking {
-                animation: vorrathShake 0.15s ease-in-out 4;
-            }
-
-        @keyframes vorrathShake {
-            0% {
-                transform: translate(0, 0);
-            }
-
-            25% {
-                transform: translate(-4px, 2px);
-            }
-
-            50% {
-                transform: translate(4px, -2px);
-            }
-
-            75% {
-                transform: translate(-2px, 4px);
-            }
-
-            100% {
-                transform: translate(2px, -4px);
-            }
-        }
-
         .epic-bg {
             position: fixed;
             top: 0;
@@ -90,13 +39,8 @@
         }
 
         @keyframes galaxyPulse {
-            0% {
-                filter: brightness(1);
-            }
-
-            100% {
-                filter: brightness(1.3);
-            }
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.3); }
         }
 
         .stars-layer {
@@ -108,13 +52,8 @@
         }
 
         @keyframes starsTwinkle {
-            0% {
-                opacity: 0.6;
-            }
-
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
         }
 
         .fire-layer {
@@ -128,15 +67,8 @@
         }
 
         @keyframes firePulse {
-            0% {
-                opacity: 0.6;
-                transform: scaleY(1);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scaleY(1.1);
-            }
+            0% { opacity: 0.6; transform: scaleY(1); }
+            100% { opacity: 1; transform: scaleY(1.1); }
         }
 
         .nebula-layer {
@@ -148,13 +80,8 @@
         }
 
         @keyframes nebulaMove {
-            0% {
-                transform: translate(0, 0);
-            }
-
-            100% {
-                transform: translate(-20px, -20px);
-            }
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-20px, -20px); }
         }
 
         .particle {
@@ -166,26 +93,12 @@
         }
 
         @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-100px) rotate(720deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
         }
 
-        /* SAWERIA BUTTON */
         .saweria-container {
             text-align: center;
             margin: 20px 0;
@@ -210,19 +123,14 @@
             animation: saweriaPulse 2s ease-in-out infinite alternate;
         }
 
-            .saweria-btn:hover {
-                transform: scale(1.1);
-                box-shadow: 0 0 40px rgba(255, 100, 0, 0.8);
-            }
+        .saweria-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 100, 0, 0.8);
+        }
 
         @keyframes saweriaPulse {
-            0% {
-                box-shadow: 0 0 20px rgba(255, 100, 0, 0.5);
-            }
-
-            100% {
-                box-shadow: 0 0 40px rgba(255, 100, 0, 0.9);
-            }
+            0% { box-shadow: 0 0 20px rgba(255, 100, 0, 0.5); }
+            100% { box-shadow: 0 0 40px rgba(255, 100, 0, 0.9); }
         }
 
         .saweria-text {
@@ -232,7 +140,7 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        /* ✅ TAMBAHAN: LORE CARD SLIDE REVEAL */
+        /* LORE CARD SLIDE REVEAL */
         .lore-card {
             position: relative;
             overflow: hidden;
@@ -245,7 +153,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 90%;
+            width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.85);
             padding: 30px 20px;
@@ -258,6 +166,59 @@
 
         .lore-card:hover .lore-card-content {
             transform: translateY(-100%);
+        }
+
+        /* VORRATH LIGHTNING (FULL SCREEN) */
+        #vorrath-card {
+            cursor: pointer;
+        }
+
+        .vorrath-lightning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+        }
+
+        .vorrath-lightning.active {
+            opacity: 1;
+        }
+
+        .vorrath-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(180, 0, 255, 0.15);
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+        }
+
+        .vorrath-flash.active {
+            animation: screenFlash 0.15s ease-out;
+        }
+
+        @keyframes screenFlash {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        #vorrath-card.striking {
+            animation: vorrathShake 0.15s ease-in-out 4;
+        }
+
+        @keyframes vorrathShake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-4px, 2px); }
+            50% { transform: translate(4px, -2px); }
+            75% { transform: translate(-2px, 4px); }
+            100% { transform: translate(2px, -4px); }
         }
     </style>
 </head>
@@ -306,42 +267,35 @@
         </nav>
     </header>
 
-
     <section class="about">
         <h1>Welcome to the world of EPIC WARS:Story of Future Website</h1>
 
         <div style="text-align: center; margin-bottom: -200px; margin-bottom: 50px;">
             <a href="create-character.html" style="
-        display: inline-block;
-        padding: 18px 40px;
-        background: transparent;
-        border: 2px solid #ff6600;
-        color: #ff6600;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1em;
-        letter-spacing: 3px;
-        border-radius: 50px;
-        text-decoration: none;
-        box-shadow: 0 0 20px rgba(255,102,0,0.4);
-        transition: 0.3s;
-        animation: orangePulse 2s ease-in-out infinite alternate;
-    ">⚔️ Wanna Create Your Own Character?</a>
+                display: inline-block;
+                padding: 18px 40px;
+                background: transparent;
+                border: 2px solid #ff6600;
+                color: #ff6600;
+                font-family: 'Orbitron', sans-serif;
+                font-size: 1em;
+                letter-spacing: 3px;
+                border-radius: 50px;
+                text-decoration: none;
+                box-shadow: 0 0 20px rgba(255,102,0,0.4);
+                transition: 0.3s;
+                animation: orangePulse 2s ease-in-out infinite alternate;
+            ">⚔️ Wanna Create Your Own Character?</a>
         </div>
 
         <style>
             @keyframes orangePulse {
-                0% {
-                    box-shadow: 0 0 20px rgba(255,102,0,0.4);
-                }
-
-                100% {
-                    box-shadow: 0 0 40px rgba(255,102,0,0.8);
-                }
+                0% { box-shadow: 0 0 20px rgba(255,102,0,0.4); }
+                100% { box-shadow: 0 0 40px rgba(255,102,0,0.8); }
             }
         </style>
 
-
-        <!-- ✅ SECTION LORE (UDAH DIUBAH) -->
+        <!-- SECTION LORE -->
         <section class="lore-section">
             <div class="lore-container">
                 <h2 class="lore-title">⚔️ THE CHRONICLE BEGINS ⚔️</h2>
@@ -349,7 +303,6 @@
 
                 <div class="lore-cards">
 
-                    <!-- Card 1: Nexus Infinitum ✅ GAMBAR UDAH ADA -->
                     <div class="lore-card" style="background-image: url('NEXUS-INFINITUM.jpg');">
                         <div class="lore-card-content">
                             <div class="lore-icon">🌌</div>
@@ -358,7 +311,6 @@
                         </div>
                     </div>
 
-                    <!-- Card 2: Vorrath (gambar belum ada, nanti tambah style="background-image: url('...');") -->
                     <div class="lore-card" id="vorrath-card" style="background-image: url('VORRATH.png');">
                         <div class="lore-card-content">
                             <div class="lore-icon">👹</div>
@@ -367,7 +319,6 @@
                         </div>
                     </div>
 
-                    <!-- Card 3: The Great War ✅ -->
                     <div class="lore-card" style="background-image: url('SONY2.png');">
                         <div class="lore-card-content">
                             <div class="lore-icon">⚔️</div>
@@ -376,7 +327,6 @@
                         </div>
                     </div>
 
-                    <!-- Card 4: Earth ✅ -->
                     <div class="lore-card" style="background-image: url('EARTH.jpg');">
                         <div class="lore-card-content">
                             <div class="lore-icon">🌍</div>
@@ -384,12 +334,12 @@
                             <p>"Earth was no longer just a small forgotten planet. It had become the center of everything."</p>
                         </div>
                     </div>
+
                 </div>
 
                 <a href="story.html" class="lore-btn">📖 Read Full Story</a>
             </div>
         </section>
-
 
     </section>
 
@@ -398,7 +348,6 @@
         <p>STILL IN MAINTANCE🛠</p>
         <button class="download-btn">DOWNLOAD COMINGSOON!👋</button>
 
-        <!-- SAWERIA DONATION BUTTON -->
         <div class="saweria-container">
             <a href="https://saweria.co/xenojulianto" target="_blank" class="saweria-btn">
                 ☕ Support EPIC WARS — Saweria
@@ -414,63 +363,59 @@
     <script src="script.js"></script>
 
     <script>
-        // ========================================
-        // VORRATH LIGHTNING EFFECT
-        // ========================================
         (function () {
             var card = document.getElementById("vorrath-card");
             if (!card) return;
 
-            // Buat canvas untuk petir
             var canvas = document.createElement("canvas");
-            canvas.className = "lightning-canvas";
-            card.appendChild(canvas);
+            canvas.className = "vorrath-lightning";
+            document.body.appendChild(canvas);
+
+            var flash = document.createElement("div");
+            flash.className = "vorrath-flash";
+            document.body.appendChild(flash);
 
             var ctx = canvas.getContext("2d");
             var striking = false;
 
             function resizeCanvas() {
-                canvas.width = card.offsetWidth;
-                canvas.height = card.offsetHeight;
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
             }
             resizeCanvas();
             window.addEventListener("resize", resizeCanvas);
 
-            // Gambar satu petir
             function drawBolt(x1, y1, x2, y2, color, width) {
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
 
-                var segments = 8 + Math.floor(Math.random() * 6);
+                var segments = 10 + Math.floor(Math.random() * 8);
                 var dx = (x2 - x1) / segments;
                 var dy = (y2 - y1) / segments;
 
                 for (var i = 1; i < segments; i++) {
-                    var px = x1 + dx * i + (Math.random() - 0.5) * 40;
-                    var py = y1 + dy * i + (Math.random() - 0.5) * 20;
+                    var px = x1 + dx * i + (Math.random() - 0.5) * 80;
+                    var py = y1 + dy * i + (Math.random() - 0.5) * 40;
                     ctx.lineTo(px, py);
                 }
                 ctx.lineTo(x2, y2);
 
-                // Glow luar
                 ctx.strokeStyle = color;
-                ctx.lineWidth = width + 6;
+                ctx.lineWidth = width + 10;
                 ctx.shadowColor = color;
-                ctx.shadowBlur = 25;
-                ctx.globalAlpha = 0.4;
+                ctx.shadowBlur = 40;
+                ctx.globalAlpha = 0.3;
                 ctx.stroke();
 
-                // Glow dalam
-                ctx.lineWidth = width + 2;
-                ctx.shadowBlur = 10;
-                ctx.globalAlpha = 0.7;
+                ctx.lineWidth = width + 4;
+                ctx.shadowBlur = 15;
+                ctx.globalAlpha = 0.6;
                 ctx.stroke();
 
-                // Core putih
                 ctx.strokeStyle = "#ffffff";
                 ctx.lineWidth = width;
                 ctx.shadowColor = "#ffffff";
-                ctx.shadowBlur = 5;
+                ctx.shadowBlur = 8;
                 ctx.globalAlpha = 0.9;
                 ctx.stroke();
 
@@ -478,75 +423,76 @@
                 ctx.shadowBlur = 0;
             }
 
-            // Gambar kilat penuh
             function strikeLightning() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 var w = canvas.width;
                 var h = canvas.height;
 
-                // Warna pink-ungu acak
-                var colors = [
-                    "#ff00ff",
-                    "#cc00ff",
-                    "#9900ff",
-                    "#ff33cc",
-                    "#aa00ff",
-                    "#ff00aa"
-                ];
+                var colors = ["#ff00ff", "#cc00ff", "#9900ff", "#ff33cc", "#aa00ff", "#ff00aa"];
 
-                // 3-5 petir utama dari atas
-                var boltCount = 3 + Math.floor(Math.random() * 3);
+                var boltCount = 5 + Math.floor(Math.random() * 4);
                 for (var i = 0; i < boltCount; i++) {
                     var startX = Math.random() * w;
-                    var endX = startX + (Math.random() - 0.5) * 100;
+                    var endX = startX + (Math.random() - 0.5) * 200;
                     var color = colors[Math.floor(Math.random() * colors.length)];
-                    var width = 1 + Math.random() * 2;
+                    var width = 1.5 + Math.random() * 3;
                     drawBolt(startX, 0, endX, h, color, width);
                 }
 
-                // 2-3 petir cabang
-                for (var j = 0; j < 2 + Math.floor(Math.random() * 2); j++) {
+                for (var j = 0; j < 3 + Math.floor(Math.random() * 3); j++) {
                     var sx = Math.random() * w;
-                    var sy = Math.random() * h * 0.5;
-                    var ex = sx + (Math.random() - 0.5) * 120;
-                    var ey = sy + h * 0.3 + Math.random() * h * 0.4;
+                    var sy = Math.random() * h * 0.4;
+                    var ex = sx + (Math.random() - 0.5) * 250;
+                    var ey = sy + h * 0.3 + Math.random() * h * 0.5;
                     var c = colors[Math.floor(Math.random() * colors.length)];
-                    drawBolt(sx, sy, ex, ey, c, 0.5 + Math.random());
+                    drawBolt(sx, sy, ex, ey, c, 1 + Math.random() * 2);
+                }
+
+                for (var k = 0; k < 2 + Math.floor(Math.random() * 2); k++) {
+                    var hx = Math.random() * w * 0.3;
+                    var hy = Math.random() * h;
+                    var hx2 = hx + w * 0.4 + Math.random() * w * 0.3;
+                    var hy2 = hy + (Math.random() - 0.5) * 100;
+                    var hc = colors[Math.floor(Math.random() * colors.length)];
+                    drawBolt(hx, hy, hx2, hy2, hc, 1 + Math.random());
                 }
             }
 
-            // Klik → petir
             card.addEventListener("click", function () {
                 if (striking) return;
                 striking = true;
                 card.classList.add("striking");
+                canvas.classList.add("active");
 
-                // 3 kali kilat cepat
                 var count = 0;
-                var maxFlashes = 3 + Math.floor(Math.random() * 3);
+                var maxFlashes = 4 + Math.floor(Math.random() * 4);
 
-                function flash() {
+                function doFlash() {
                     strikeLightning();
+                    flash.classList.remove("active");
+                    void flash.offsetWidth;
+                    flash.classList.add("active");
+
                     count++;
                     if (count < maxFlashes) {
                         setTimeout(function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
-                            setTimeout(flash, 30 + Math.random() * 60);
-                        }, 40 + Math.random() * 50);
+                            setTimeout(doFlash, 40 + Math.random() * 80);
+                        }, 50 + Math.random() * 70);
                     } else {
                         setTimeout(function () {
                             ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            canvas.classList.remove("active");
                             card.classList.remove("striking");
                             striking = false;
-                        }, 200);
+                        }, 300);
                     }
                 }
-                flash();
+                doFlash();
             });
         })();
     </script>
 
-
-</body >
-</html >
+</body>
+</html>
