@@ -488,13 +488,14 @@
         }
     </script>
 
+    
     <script>
         const IMGBB_API_KEY = "c30ecdbbfbeb7855dd7edb64d276e2b8";
         const EMAILJS_SERVICE = "service_a8iwzll";
         const EMAILJS_TEMPLATE = "template_o7auf65";
 
         function submitToDeveloper(source) {
-            var user = localStorage.getItem("user");
+            var user = localStorage.getItem("user") || "Test User";
 
             var imageData = "";
             if (source === "upload") {
@@ -519,21 +520,45 @@
         function uploadToImgbb(base64String) {
             return new Promise(function (resolve, reject) {
                 var base64Data = base64String.split(",")[1];
-                var jsonBody = JSON.stringify({ key: IMGBB_API_KEY, image: base64Data });
 
-                tryUpload("https://api.imgbb.com/1/upload", 0);
+                var urls = [
+                    "https://api.imgbb.com/1/upload",
+                    "https://corsproxy.io/?https://api.imgbb.com/1/upload",
+                    "https://thingproxy.freeboard.io/fetch/https://api.imgbb.com/1/upload",
+                    "https://api.codetabs.com/v1/proxy?quest=https://api.imgbb.com/1/upload"
+                ];
 
-                function tryUpload(url, attempt) {
-                    fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: jsonBody })
-                    .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-                    .then(function (result) {
-                        if (result.success) { resolve(result.data.url); }
-                        else if (attempt === 0) { tryUpload("https://corsproxy.io/?https://api.imgbb.com/1/upload", 1); }
-                        else { reject("Upload failed"); }
+                tryNext(0);
+
+                function tryNext(index) {
+                    if (index >= urls.length) {
+                        reject("All upload methods failed. Try using VPN.");
+                        return;
+                    }
+
+                    var formData = new FormData();
+                    formData.append("key", IMGBB_API_KEY);
+                    formData.append("image", base64Data);
+
+                    fetch(urls[index], {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(function (r) { return r.text(); })
+                    .then(function (text) {
+                        try {
+                            var result = JSON.parse(text);
+                            if (result.success) {
+                                resolve(result.data.url);
+                            } else {
+                                tryNext(index + 1);
+                            }
+                        } catch (e) {
+                            tryNext(index + 1);
+                        }
                     })
                     .catch(function () {
-                        if (attempt === 0) { tryUpload("https://corsproxy.io/?https://api.imgbb.com/1/upload", 1); }
-                        else { reject("Cannot connect to upload service"); }
+                        tryNext(index + 1);
                     });
                 }
             });
@@ -542,8 +567,8 @@
         function sendEmail(userName, imageUrl) {
             return new Promise(function (resolve, reject) {
                 emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, { from_name: userName, character_image: imageUrl })
-                .then(function (response) { if (response.status === 200) resolve(); else reject("EmailJS status: " + response.status); })
-                .catch(function (error) { reject("EmailJS error: " + (error.text || error)); });
+                .then(function (response) { if (response.status === 200) resolve(); else reject("EmailJS: " + response.status); })
+                .catch(function (error) { reject("EmailJS: " + (error.text || error)); });
             });
         }
     </script>
