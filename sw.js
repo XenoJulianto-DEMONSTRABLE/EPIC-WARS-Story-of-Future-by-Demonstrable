@@ -1,38 +1,41 @@
-var CACHE_NAME = 'epic-wars-game-v1';
+var CACHE_NAME = 'epic-wars-game-v2';
 
-self.addEventListener('install', function (event) {
+self.addEventListener('install', function(event) {
     event.waitUntil(
-        caches.open(CACHE_NAME).then(function (cache) {
+        caches.open(CACHE_NAME).then(function(cache) {
             return cache.addAll([
-                './game.html'
+                './index.html',
+                './game.html',
+                './style.css',
+                './script.js'
             ]);
         })
     );
     self.skipWaiting();
 });
 
-self.addEventListener('activate', function (event) {
+self.addEventListener('activate', function(event) {
     event.waitUntil(
-        caches.keys().then(function (names) {
+        caches.keys().then(function(names) {
             return Promise.all(
-                names.filter(function (n) { return n !== CACHE_NAME; })
-                    .map(function (n) { return caches.delete(n); })
+                names.filter(function(n) { return n !== CACHE_NAME; })
+                    .map(function(n) { return caches.delete(n); })
             );
         })
     );
 });
 
-self.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.match(event.request).then(function (response) {
+        caches.match(event.request).then(function(response) {
             if (response) return response;
-            return fetch(event.request).then(function (fetchRes) {
-                return caches.open(CACHE_NAME).then(function (cache) {
+            return fetch(event.request).then(function(fetchRes) {
+                return caches.open(CACHE_NAME).then(function(cache) {
                     cache.put(event.request, fetchRes.clone());
                     return fetchRes;
                 });
-            }).catch(function () {
-                return caches.match('./game.html');
+            }).catch(function() {
+                return caches.match('./index.html');
             });
         })
     );
