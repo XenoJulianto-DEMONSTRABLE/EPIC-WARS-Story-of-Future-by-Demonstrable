@@ -4,503 +4,684 @@
     <meta charset="utf-8">
     <title>EPIC WARS — The Black Hyena</title>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{background:#0a0a0a;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:monospace;color:#fff;overflow:hidden;user-select:none}
-        #gameTitle{font-size:1.2em;color:#800000;letter-spacing:4px;margin-bottom:5px;text-shadow:0 0 15px rgba(128,0,0,.8)}
-        #gameSubtitle{font-size:.6em;color:#444;letter-spacing:3px;margin-bottom:15px}
-        #gameCanvas{border:2px solid #800000;box-shadow:0 0 30px rgba(128,0,0,.5);image-rendering:pixelated}
-        #gameHUD{display:flex;justify-content:space-between;width:600px;margin-top:10px;font-size:.75em;letter-spacing:2px}
-        .hud-item{color:#800000}.hud-value{color:#fff}
-        #gameMessage{margin-top:15px;font-size:.7em;color:#555;letter-spacing:2px;text-align:center}
-        .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100}
-        .big-title{font-size:2em;color:#800000;letter-spacing:6px;text-shadow:0 0 30px rgba(128,0,0,.9);margin-bottom:10px}
-        .big-sub{font-size:.7em;color:#666;letter-spacing:3px;margin-bottom:40px}
-        .btn{padding:15px 40px;background:0 0;border:2px solid #800000;color:#800000;font-family:monospace;font-size:.9em;letter-spacing:4px;cursor:pointer;transition:.3s;text-transform:uppercase}
-        .btn:hover{background:#800000;color:#fff;box-shadow:0 0 25px rgba(128,0,0,.6)}
-        .controls-info{margin-top:30px;font-size:.6em;color:#444;letter-spacing:2px;text-align:center;line-height:2}
-        .green{color:#00ff88!important;text-shadow:0 0 30px rgba(0,255,136,.9)}
-        #mobileControls{display:none;position:fixed;bottom:20px;left:0;width:100%;z-index:50;padding:0 20px}
-        .mobile-row{display:flex;justify-content:space-between;align-items:center}
-        .dpad{display:grid;grid-template-columns:50px 50px 50px;grid-template-rows:50px 50px 50px;gap:4px}
-        .dpad-btn{background:rgba(128,0,0,.3);border:1px solid #800000;color:#800000;font-size:18px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
-        .dpad-btn:active{background:rgba(128,0,0,.7)}
-        .atk-btn{width:80px;height:80px;border-radius:50%;background:rgba(128,0,0,.3);border:2px solid #800000;color:#800000;font-size:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
-        .atk-btn:active{background:rgba(128,0,0,.7)}
-        @media(pointer:coarse){#mobileControls{display:block}#gameCanvas{width:95vw;height:auto}}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: monospace;
+            color: #fff;
+            overflow: hidden;
+            user-select: none
+        }
+
+        #gameTitle {
+            font-size: 1.2em;
+            color: #800000;
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(128,0,0,.8)
+        }
+
+        #gameSubtitle {
+            font-size: .6em;
+            color: #444;
+            letter-spacing: 3px;
+            margin-bottom: 15px
+        }
+
+        #gameCanvas {
+            border: 2px solid #800000;
+            box-shadow: 0 0 30px rgba(128,0,0,.5);
+            image-rendering: pixelated
+        }
+
+        #gameHUD {
+            display: flex;
+            justify-content: space-between;
+            width: 600px;
+            margin-top: 10px;
+            font-size: .75em;
+            letter-spacing: 2px
+        }
+
+        .hud-item {
+            color: #800000
+        }
+
+        .hud-value {
+            color: #fff
+        }
+
+        #gameMessage {
+            margin-top: 15px;
+            font-size: .7em;
+            color: #555;
+            letter-spacing: 2px;
+            text-align: center
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.92);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100
+        }
+
+        .big-title {
+            font-size: 2em;
+            color: #800000;
+            letter-spacing: 6px;
+            text-shadow: 0 0 30px rgba(128,0,0,.9);
+            margin-bottom: 10px
+        }
+
+        .big-sub {
+            font-size: .7em;
+            color: #666;
+            letter-spacing: 3px;
+            margin-bottom: 40px
+        }
+
+        .btn {
+            padding: 15px 40px;
+            background: 0 0;
+            border: 2px solid #800000;
+            color: #800000;
+            font-family: monospace;
+            font-size: .9em;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: .3s;
+            text-transform: uppercase
+        }
+
+            .btn:hover {
+                background: #800000;
+                color: #fff;
+                box-shadow: 0 0 25px rgba(128,0,0,.6)
+            }
+
+        .controls-info {
+            margin-top: 30px;
+            font-size: .6em;
+            color: #444;
+            letter-spacing: 2px;
+            text-align: center;
+            line-height: 2
+        }
+
+        .green {
+            color: #00ff88 !important;
+            text-shadow: 0 0 30px rgba(0,255,136,.9)
+        }
+
+        #mobileControls {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            padding: 0 20px
+        }
+
+        .mobile-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .dpad {
+            display: grid;
+            grid-template-columns: 50px 50px 50px;
+            grid-template-rows: 50px 50px 50px;
+            gap: 4px
+        }
+
+        .dpad-btn {
+            background: rgba(128,0,0,.3);
+            border: 1px solid #800000;
+            color: #800000;
+            font-size: 18px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent
+        }
+
+            .dpad-btn:active {
+                background: rgba(128,0,0,.7)
+            }
+
+        .atk-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(128,0,0,.3);
+            border: 2px solid #800000;
+            color: #800000;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent
+        }
+
+            .atk-btn:active {
+                background: rgba(128,0,0,.7)
+            }
+
+        @media(pointer:coarse) {
+            #mobileControls {
+                display: block
+            }
+
+            #gameCanvas {
+                width: 95vw;
+                height: auto
+            }
+        }
     </style>
 </head>
 <body>
 
-<div id="gameTitle">⚔️ EPIC WARS</div>
-<div id="gameSubtitle">THE BLACK HYENA — DUNGEON CRAWLER</div>
+    <div id="gameTitle">⚔️ EPIC WARS</div>
+    <div id="gameSubtitle">THE BLACK HYENA — DUNGEON CRAWLER</div>
 
-<div style="position:relative">
-    <canvas id="gameCanvas" width="600" height="480"></canvas>
+    <div style="position:relative">
+        <canvas id="gameCanvas" width="600" height="480"></canvas>
 
-    <div id="startScreen" class="overlay">
-        <div class="big-title">THE BLACK HYENA</div>
-        <div class="big-sub">DUNGEON CRAWLER</div>
-        <button class="btn" onclick="startGame()">▶ START MISSION</button>
-        <div class="controls-info">
-            WASD / ARROW KEYS — MOVE<br>
-            SPACE — ATTACK<br>
-            DEFEAT ALL ENEMIES → FIND THE EXIT
+        <div id="startScreen" class="overlay">
+            <div class="big-title">THE BLACK HYENA</div>
+            <div class="big-sub">DUNGEON CRAWLER</div>
+            <button class="btn" onclick="startGame()">▶ START MISSION</button>
+            <div class="controls-info">
+                WASD / ARROW KEYS — MOVE<br>
+                SPACE — ATTACK<br>
+                DEFEAT ALL ENEMIES → FIND THE EXIT
+            </div>
+        </div>
+
+        <div id="gameOverScreen" class="overlay" style="display:none">
+            <div class="big-title">MISSION FAILED</div>
+            <div class="big-sub" id="gameOverScore">SCORE: 0</div>
+            <button class="btn" onclick="restartGame()">↺ TRY AGAIN</button>
+        </div>
+
+        <div id="levelClearScreen" class="overlay" style="display:none">
+            <div class="big-title green">LEVEL CLEAR</div>
+            <div class="big-sub" id="levelClearScore">SCORE: 0</div>
+            <button class="btn" onclick="nextLevel()">▶ NEXT LEVEL</button>
         </div>
     </div>
 
-    <div id="gameOverScreen" class="overlay" style="display:none">
-        <div class="big-title">MISSION FAILED</div>
-        <div class="big-sub" id="gameOverScore">SCORE: 0</div>
-        <button class="btn" onclick="restartGame()">↺ TRY AGAIN</button>
+    <div id="gameHUD">
+        <span><span class="hud-item">HP:</span> <span class="hud-value" id="hudHP">100</span></span>
+        <span><span class="hud-item">SCORE:</span> <span class="hud-value" id="hudScore">0</span></span>
+        <span><span class="hud-item">LEVEL:</span> <span class="hud-value" id="hudLevel">1</span></span>
+        <span><span class="hud-item">ENEMIES:</span> <span class="hud-value" id="hudEnemies">0</span></span>
     </div>
 
-    <div id="levelClearScreen" class="overlay" style="display:none">
-        <div class="big-title green">LEVEL CLEAR</div>
-        <div class="big-sub" id="levelClearScore">SCORE: 0</div>
-        <button class="btn" onclick="nextLevel()">▶ NEXT LEVEL</button>
-    </div>
-</div>
+    <div id="gameMessage">DEFEAT ALL ENEMIES ⚔️ | FIND THE EXIT ⬛</div>
 
-<div id="gameHUD">
-    <span><span class="hud-item">HP:</span> <span class="hud-value" id="hudHP">100</span></span>
-    <span><span class="hud-item">SCORE:</span> <span class="hud-value" id="hudScore">0</span></span>
-    <span><span class="hud-item">LEVEL:</span> <span class="hud-value" id="hudLevel">1</span></span>
-    <span><span class="hud-item">ENEMIES:</span> <span class="hud-value" id="hudEnemies">0</span></span>
-</div>
-
-<div id="gameMessage">DEFEAT ALL ENEMIES ⚔️ | FIND THE EXIT ⬛</div>
-
-<div id="mobileControls">
-    <div class="mobile-row">
-        <div class="dpad">
-            <div></div>
-            <div class="dpad-btn" id="mUp">▲</div>
-            <div></div>
-            <div class="dpad-btn" id="mLeft">◄</div>
-            <div></div>
-            <div class="dpad-btn" id="mRight">►</div>
-            <div></div>
-            <div class="dpad-btn" id="mDown">▼</div>
-            <div></div>
+    <div id="mobileControls">
+        <div class="mobile-row">
+            <div class="dpad">
+                <div></div>
+                <div class="dpad-btn" id="mUp">▲</div>
+                <div></div>
+                <div class="dpad-btn" id="mLeft">◄</div>
+                <div></div>
+                <div class="dpad-btn" id="mRight">►</div>
+                <div></div>
+                <div class="dpad-btn" id="mDown">▼</div>
+                <div></div>
+            </div>
+            <div class="atk-btn" id="mAtk">⚔️</div>
         </div>
-        <div class="atk-btn" id="mAtk">⚔️</div>
     </div>
-</div>
 
-<script>
-function createSprite(data,palette,scale){
-    var h=data.length,w=data[0].length;
-    var c=document.createElement('canvas');
-    c.width=w*scale;c.height=h*scale;
-    var x=c.getContext('2d');
-    for(var y=0;y<h;y++)for(var i=0;i<w;i++){
-        var ch=data[y][i];
-        if(ch==='.'||!palette[ch])continue;
-        x.fillStyle=palette[ch];
-        x.fillRect(i*scale,y*scale,scale,scale);
-    }
-    return c;
-}
-
-var SONY_DATA=[
-    "..11....11..",
-    "..31....31..",
-    "...111111...",
-    "..12222221..",
-    "..14444441..",
-    "..12222221..",
-    ".1222222221.",
-    ".1222222221.",
-    ".1225552221.",
-    ".1222222221.",
-    ".1222222221.",
-    "..11111111..",
-    "..1222.2221.",
-    "..1222.2221.",
-    "..1222.2221.",
-    "..1111.1111."
-];
-var SONY_PAL={'1':'#800000','2':'#151515','3':'#cc0000','4':'#ff3333','5':'#aa0000'};
-
-var PIRATE_DATA=[
-    "..66666....",
-    ".6666666...",
-    ".6444446...",
-    "..66666....",
-    ".6222262...",
-    ".6222226...",
-    ".6222226...",
-    "..22222....",
-    "..222.22...",
-    "..222.22...",
-    "..222.22...",
-    "..666.66...",
-    "..........."
-];
-var PIRATE_PAL={'2':'#1a1a2e','4':'#aa00ff','6':'#6600aa'};
-
-var MINION_DATA=[
-    ".2222....",
-    ".24442...",
-    "..2222....",
-    ".33333...",
-    ".32223...",
-    ".32223...",
-    "..3333....",
-    "..33.33...",
-    "..33.33...",
-    "..33.33...",
-    "..44.44..."
-];
-var MINION_PAL={'2':'#0d001a','3':'#220044','4':'#440066'};
-
-var sonySprite,sonyHitSprite,pirateSprite,pirateHitSprite,minionSprite,minionHitSprite;
-
-function initSprites(){
-    var ps=3;
-    sonySprite=createSprite(SONY_DATA,SONY_PAL,ps);
-    pirateSprite=createSprite(PIRATE_DATA,PIRATE_PAL,ps);
-    minionSprite=createSprite(MINION_DATA,MINION_PAL,ps);
-    var wp={'1':'#fff','2':'#fff','3':'#fff','4':'#fff','5':'#fff','6':'#fff'};
-    sonyHitSprite=createSprite(SONY_DATA,wp,ps);
-    pirateHitSprite=createSprite(PIRATE_DATA,wp,ps);
-    minionHitSprite=createSprite(MINION_DATA,wp,ps);
-}
-
-var audioCtx;
-function initAudio(){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
-function playSound(type){
-    if(!audioCtx)return;
-    try{
-        var o=audioCtx.createOscillator();
-        var g=audioCtx.createGain();
-        o.connect(g);g.connect(audioCtx.destination);
-        var t=audioCtx.currentTime;
-        if(type==='slash'){
-            o.type='sawtooth';o.frequency.setValueAtTime(200,t);
-            o.frequency.exponentialRampToValueAtTime(80,t+.1);
-            g.gain.setValueAtTime(.2,t);g.gain.exponentialRampToValueAtTime(.01,t+.12);
-            o.start(t);o.stop(t+.12);
-        }else if(type==='hit'){
-            o.type='square';o.frequency.setValueAtTime(500,t);
-            o.frequency.exponentialRampToValueAtTime(100,t+.06);
-            g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.01,t+.08);
-            o.start(t);o.stop(t+.08);
-        }else if(type==='kill'){
-            o.type='sawtooth';o.frequency.setValueAtTime(150,t);
-            o.frequency.exponentialRampToValueAtTime(30,t+.3);
-            g.gain.setValueAtTime(.2,t);g.gain.exponentialRampToValueAtTime(.01,t+.3);
-            o.start(t);o.stop(t+.3);
-        }else if(type==='hurt'){
-            o.type='square';o.frequency.setValueAtTime(100,t);
-            o.frequency.exponentialRampToValueAtTime(50,t+.15);
-            g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.01,t+.15);
-            o.start(t);o.stop(t+.15);
-        }else if(type==='clear'){
-            o.type='sine';o.frequency.setValueAtTime(300,t);
-            o.frequency.exponentialRampToValueAtTime(800,t+.3);
-            g.gain.setValueAtTime(.15,t);g.gain.exponentialRampToValueAtTime(.01,t+.4);
-            o.start(t);o.stop(t+.4);
+    <script>
+        function createSprite(data, palette, scale) {
+            var h = data.length, w = data[0].length;
+            var c = document.createElement('canvas');
+            c.width = w * scale; c.height = h * scale;
+            var x = c.getContext('2d');
+            for (var y = 0; y < h; y++)for (var i = 0; i < w; i++) {
+                var ch = data[y][i];
+                if (ch === '.' || !palette[ch]) continue;
+                x.fillStyle = palette[ch];
+                x.fillRect(i * scale, y * scale, scale, scale);
+            }
+            return c;
         }
-    }catch(e){}
-}
 
-var canvas=document.getElementById('gameCanvas');
-var ctx=canvas.getContext('2d');
-var T=40,COLS=15,ROWS=12;
+        var SONY_DATA = [
+            "..11....11..",
+            "..31....31..",
+            "...111111...",
+            "..12222221..",
+            "..14444441..",
+            "..12222221..",
+            ".1222222221.",
+            ".1222222221.",
+            ".1225552221.",
+            ".1222222221.",
+            ".1222222221.",
+            "..11111111..",
+            "..1222.2221.",
+            "..1222.2221.",
+            "..1222.2221.",
+            "..1111.1111."
+        ];
+        var SONY_PAL = { '1': '#800000', '2': '#151515', '3': '#cc0000', '4': '#ff3333', '5': '#aa0000' };
 
-var gameState='start',level=1,score=0;
-var player={},enemies=[],map=[],exitPos={};
-var keys={},camX=0,camY=0;
-var particles=[],screenShake=0,shakeX=0,shakeY=0;
+        var PIRATE_DATA = [
+            "..66666....",
+            ".6666666...",
+            ".6444446...",
+            "..66666....",
+            ".6222262...",
+            ".6222226...",
+            ".6222226...",
+            "..22222....",
+            "..222.22...",
+            "..222.22...",
+            "..222.22...",
+            "..666.66...",
+            "..........."
+        ];
+        var PIRATE_PAL = { '2': '#1a1a2e', '4': '#aa00ff', '6': '#6600aa' };
 
-function generateDungeon(lvl){
-    map=[];
-    for(var r=0;r<ROWS;r++){map[r]=[];for(var c=0;c<COLS;c++)map[r][c]=1;}
-    var rooms=[],attempts=0;
-    var roomTarget=5+lvl;
-    while(rooms.length<roomTarget&&attempts<300){
-        attempts++;
-        var rw=3+Math.floor(Math.random()*3);
-        var rh=2+Math.floor(Math.random()*2);
-        var rx=1+Math.floor(Math.random()*(COLS-rw-2));
-        var ry=1+Math.floor(Math.random()*(ROWS-rh-2));
-        var ok=true;
-        for(var ri=0;ri<rooms.length;ri++){
-            var rm=rooms[ri];
-            if(rx<rm.x+rm.w+1&&rx+rw+1>rm.x&&ry<rm.y+rm.h+1&&ry+rh+1>rm.y){ok=false;break;}
+        var MINION_DATA = [
+            ".2222....",
+            ".24442...",
+            "..2222....",
+            ".33333...",
+            ".32223...",
+            ".32223...",
+            "..3333....",
+            "..33.33...",
+            "..33.33...",
+            "..33.33...",
+            "..44.44..."
+        ];
+        var MINION_PAL = { '2': '#0d001a', '3': '#220044', '4': '#440066' };
+
+        var sonySprite, sonyHitSprite, pirateSprite, pirateHitSprite, minionSprite, minionHitSprite;
+
+        function initSprites() {
+            var ps = 3;
+            sonySprite = createSprite(SONY_DATA, SONY_PAL, ps);
+            pirateSprite = createSprite(PIRATE_DATA, PIRATE_PAL, ps);
+            minionSprite = createSprite(MINION_DATA, MINION_PAL, ps);
+            var wp = { '1': '#fff', '2': '#fff', '3': '#fff', '4': '#fff', '5': '#fff', '6': '#fff' };
+            sonyHitSprite = createSprite(SONY_DATA, wp, ps);
+            pirateHitSprite = createSprite(PIRATE_DATA, wp, ps);
+            minionHitSprite = createSprite(MINION_DATA, wp, ps);
         }
-        if(ok){
-            rooms.push({x:rx,y:ry,w:rw,h:rh});
-            for(var dy=0;dy<rh;dy++)for(var dx=0;dx<rw;dx++)map[ry+dy][rx+dx]=0;
+
+        var audioCtx;
+        function initAudio() { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { } }
+        function playSound(type) {
+            if (!audioCtx) return;
+            try {
+                var o = audioCtx.createOscillator();
+                var g = audioCtx.createGain();
+                o.connect(g); g.connect(audioCtx.destination);
+                var t = audioCtx.currentTime;
+                if (type === 'slash') {
+                    o.type = 'sawtooth'; o.frequency.setValueAtTime(200, t);
+                    o.frequency.exponentialRampToValueAtTime(80, t + .1);
+                    g.gain.setValueAtTime(.2, t); g.gain.exponentialRampToValueAtTime(.01, t + .12);
+                    o.start(t); o.stop(t + .12);
+                } else if (type === 'hit') {
+                    o.type = 'square'; o.frequency.setValueAtTime(500, t);
+                    o.frequency.exponentialRampToValueAtTime(100, t + .06);
+                    g.gain.setValueAtTime(.15, t); g.gain.exponentialRampToValueAtTime(.01, t + .08);
+                    o.start(t); o.stop(t + .08);
+                } else if (type === 'kill') {
+                    o.type = 'sawtooth'; o.frequency.setValueAtTime(150, t);
+                    o.frequency.exponentialRampToValueAtTime(30, t + .3);
+                    g.gain.setValueAtTime(.2, t); g.gain.exponentialRampToValueAtTime(.01, t + .3);
+                    o.start(t); o.stop(t + .3);
+                } else if (type === 'hurt') {
+                    o.type = 'square'; o.frequency.setValueAtTime(100, t);
+                    o.frequency.exponentialRampToValueAtTime(50, t + .15);
+                    g.gain.setValueAtTime(.15, t); g.gain.exponentialRampToValueAtTime(.01, t + .15);
+                    o.start(t); o.stop(t + .15);
+                } else if (type === 'clear') {
+                    o.type = 'sine'; o.frequency.setValueAtTime(300, t);
+                    o.frequency.exponentialRampToValueAtTime(800, t + .3);
+                    g.gain.setValueAtTime(.15, t); g.gain.exponentialRampToValueAtTime(.01, t + .4);
+                    o.start(t); o.stop(t + .4);
+                }
+            } catch (e) { }
         }
-    }
-    for(var i=1;i<rooms.length;i++){
-        var cx1=Math.floor(rooms[i-1].x+rooms[i-1].w/2);
-        var cy1=Math.floor(rooms[i-1].y+rooms[i-1].h/2);
-        var cx2=Math.floor(rooms[i].x+rooms[i].w/2);
-        var cy2=Math.floor(rooms[i].y+rooms[i].h/2);
-        var x=cx1;
-        while(x!==cx2){if(cy1>=0&&cy1<ROWS&&x>=0&&x<COLS)map[cy1][x]=0;x+=cx2>cx1?1:-1;}
-        var y=cy1;
-        while(y!==cy2){if(y>=0&&y<ROWS&&cx2>=0&&cx2<COLS)map[y][cx2]=0;y+=cy2>cy1?1:-1;}
-    }
-    player.x=rooms[0].x+1;player.y=rooms[0].y+1;
-    player.px=player.x*T;player.py=player.y*T;
-    var lr=rooms[rooms.length-1];
-    exitPos={x:lr.x+Math.floor(lr.w/2),y:lr.y+Math.floor(lr.h/2)};
-    enemies=[];
-    for(var i=1;i<rooms.length;i++){
-        var ec=1+Math.floor(Math.random()*(1+Math.floor(lvl/2)));
-        for(var j=0;j<ec;j++){
-            var ex=rooms[i].x+Math.floor(Math.random()*rooms[i].w);
-            var ey=rooms[i].y+Math.floor(Math.random()*rooms[i].h);
-            var type=Math.random()<0.35?'minion':'pirate';
-            enemies.push(makeEnemy(ex,ey,type,lvl));
+
+        var canvas = document.getElementById('gameCanvas');
+        var ctx = canvas.getContext('2d');
+        var T = 40, COLS = 15, ROWS = 12;
+
+        var gameState = 'start', level = 1, score = 0;
+        var player = {}, enemies = [], map = [], exitPos = {};
+        var keys = {}, camX = 0, camY = 0;
+        var particles = [], screenShake = 0, shakeX = 0, shakeY = 0;
+
+        function generateDungeon(lvl) {
+            map = [];
+            for (var r = 0; r < ROWS; r++) { map[r] = []; for (var c = 0; c < COLS; c++)map[r][c] = 1; }
+            var rooms = [], attempts = 0;
+            var roomTarget = 5 + lvl;
+            while (rooms.length < roomTarget && attempts < 300) {
+                attempts++;
+                var rw = 3 + Math.floor(Math.random() * 3);
+                var rh = 2 + Math.floor(Math.random() * 2);
+                var rx = 1 + Math.floor(Math.random() * (COLS - rw - 2));
+                var ry = 1 + Math.floor(Math.random() * (ROWS - rh - 2));
+                var ok = true;
+                for (var ri = 0; ri < rooms.length; ri++) {
+                    var rm = rooms[ri];
+                    if (rx < rm.x + rm.w + 1 && rx + rw + 1 > rm.x && ry < rm.y + rm.h + 1 && ry + rh + 1 > rm.y) { ok = false; break; }
+                }
+                if (ok) {
+                    rooms.push({ x: rx, y: ry, w: rw, h: rh });
+                    for (var dy = 0; dy < rh; dy++)for (var dx = 0; dx < rw; dx++)map[ry + dy][rx + dx] = 0;
+                }
+            }
+            for (var i = 1; i < rooms.length; i++) {
+                var cx1 = Math.floor(rooms[i - 1].x + rooms[i - 1].w / 2);
+                var cy1 = Math.floor(rooms[i - 1].y + rooms[i - 1].h / 2);
+                var cx2 = Math.floor(rooms[i].x + rooms[i].w / 2);
+                var cy2 = Math.floor(rooms[i].y + rooms[i].h / 2);
+                var x = cx1;
+                while (x !== cx2) { if (cy1 >= 0 && cy1 < ROWS && x >= 0 && x < COLS) map[cy1][x] = 0; x += cx2 > cx1 ? 1 : -1; }
+                var y = cy1;
+                while (y !== cy2) { if (y >= 0 && y < ROWS && cx2 >= 0 && cx2 < COLS) map[y][cx2] = 0; y += cy2 > cy1 ? 1 : -1; }
+            }
+            player.x = rooms[0].x + 1; player.y = rooms[0].y + 1;
+            player.px = player.x * T; player.py = player.y * T;
+            var lr = rooms[rooms.length - 1];
+            exitPos = { x: lr.x + Math.floor(lr.w / 2), y: lr.y + Math.floor(lr.h / 2) };
+            enemies = [];
+            for (var i = 1; i < rooms.length; i++) {
+                var ec = 1 + Math.floor(Math.random() * (1 + Math.floor(lvl / 2)));
+                for (var j = 0; j < ec; j++) {
+                    var ex = rooms[i].x + Math.floor(Math.random() * rooms[i].w);
+                    var ey = rooms[i].y + Math.floor(Math.random() * rooms[i].h);
+                    var type = Math.random() < 0.35 ? 'minion' : 'pirate';
+                    enemies.push(makeEnemy(ex, ey, type, lvl));
+                }
+            }
         }
-    }
-}
 
-function makeEnemy(x,y,type,lvl){
-    var isMinion=type==='minion';
-    return{x:x,y:y,px:x*T,py:y*T,type:type,hp:isMinion?20+lvl*5:40+lvl*12,maxHp:isMinion?20+lvl*5:40+lvl*12,
-        speed:isMinion?1.2+lvl*.15:.7+lvl*.12,dmg:isMinion?2+lvl:5+lvl*2,
-        moveTimer:0,facing:1,stunTimer:0,hitTimer:0,attackTimer:0,attackCd:0};
-}
+        function makeEnemy(x, y, type, lvl) {
+            var isMinion = type === 'minion';
+            return {
+                x: x, y: y, px: x * T, py: y * T, type: type, hp: isMinion ? 20 + lvl * 5 : 40 + lvl * 12, maxHp: isMinion ? 20 + lvl * 5 : 40 + lvl * 12,
+                speed: isMinion ? 1.2 + lvl * .15 : .7 + lvl * .12, dmg: isMinion ? 2 + lvl : 5 + lvl * 2,
+                moveTimer: 0, facing: 1, stunTimer: 0, hitTimer: 0, attackTimer: 0, attackCd: 0
+            };
+        }
 
-function initPlayer(){
-    player={x:1,y:1,px:T,py:T,hp:100,maxHp:100,speed:3,facing:1,attackFrame:0,attackCd:0,invTimer:0};
-}
+        function initPlayer() {
+            player = { x: 1, y: 1, px: T, py: T, hp: 100, maxHp: 100, speed: 3, facing: 1, attackFrame: 0, attackCd: 0, invTimer: 0 };
+        }
 
-function startGame(){
-    document.getElementById('startScreen').style.display='none';
-    initAudio();initSprites();
-    level=1;score=0;initPlayer();
-    generateDungeon(level);
-    gameState='playing';requestAnimationFrame(loop);
-}
-function restartGame(){
-    document.getElementById('gameOverScreen').style.display='none';
-    level=1;score=0;initPlayer();
-    generateDungeon(level);gameState='playing';
-}
-function nextLevel(){
-    document.getElementById('levelClearScreen').style.display='none';
-    level++;initPlayer();
-    generateDungeon(level);gameState='playing';
-    playSound('clear');
-}
+        function startGame() {
+            document.getElementById('startScreen').style.display = 'none';
+            initAudio(); initSprites();
+            level = 1; score = 0; initPlayer();
+            generateDungeon(level);
+            gameState = 'playing'; requestAnimationFrame(loop);
+        }
+        function restartGame() {
+            document.getElementById('gameOverScreen').style.display = 'none';
+            level = 1; score = 0; initPlayer();
+            generateDungeon(level); gameState = 'playing';
+        }
+        function nextLevel() {
+            document.getElementById('levelClearScreen').style.display = 'none';
+            level++; initPlayer();
+            generateDungeon(level); gameState = 'playing';
+            playSound('clear');
+        }
 
-document.addEventListener('keydown',function(e){keys[e.key]=true;if(e.key===' ')e.preventDefault();});
-document.addEventListener('keyup',function(e){keys[e.key]=false;});
+        document.addEventListener('keydown', function (e) { keys[e.key] = true; if (e.key === ' ') e.preventDefault(); });
+        document.addEventListener('keyup', function (e) { keys[e.key] = false; });
 
-['Up','Down','Left','Right'].forEach(function(d){
-    var el=document.getElementById('m'+d);
-    if(!el)return;
-    el.addEventListener('touchstart',function(e){e.preventDefault();keys['Arrow'+d]=true;},{passive:false});
-    el.addEventListener('touchend',function(e){e.preventDefault();keys['Arrow'+d]=false;},{passive:false});
-});
-var mAtk=document.getElementById('mAtk');
-if(mAtk){
-    mAtk.addEventListener('touchstart',function(e){e.preventDefault();keys[' ']=true;},{passive:false});
-    mAtk.addEventListener('touchend',function(e){e.preventDefault();keys[' ']=false;},{passive:false});
-}
+        ['Up', 'Down', 'Left', 'Right'].forEach(function (d) {
+            var el = document.getElementById('m' + d);
+            if (!el) return;
+            el.addEventListener('touchstart', function (e) { e.preventDefault(); keys['Arrow' + d] = true; }, { passive: false });
+            el.addEventListener('touchend', function (e) { e.preventDefault(); keys['Arrow' + d] = false; }, { passive: false });
+        });
+        var mAtk = document.getElementById('mAtk');
+        if (mAtk) {
+            mAtk.addEventListener('touchstart', function (e) { e.preventDefault(); keys[' '] = true; }, { passive: false });
+            mAtk.addEventListener('touchend', function (e) { e.preventDefault(); keys[' '] = false; }, { passive: false });
+        }
 
-function spawnParticles(x,y,color,count){
-    for(var i=0;i<count;i++)
-        particles.push({x:x,y:y,vx:(Math.random()-.5)*5,vy:(Math.random()-.5)*5,life:15+Math.random()*10,color:color,size:2+Math.random()*3});
-}
-function updateParticles(){
-    particles=particles.filter(function(p){p.x+=p.vx;p.y+=p.vy;p.life--;p.size*=.93;return p.life>0;});
-}
-function renderParticles(){
-    particles.forEach(function(p){
-        ctx.globalAlpha=Math.min(1,p.life/20);
-        ctx.fillStyle=p.color;
-        ctx.fillRect(p.x-camX,p.y-camY,p.size,p.size);
-    });
-    ctx.globalAlpha=1;
-}
+        function spawnParticles(x, y, color, count) {
+            for (var i = 0; i < count; i++)
+                particles.push({ x: x, y: y, vx: (Math.random() - .5) * 5, vy: (Math.random() - .5) * 5, life: 15 + Math.random() * 10, color: color, size: 2 + Math.random() * 3 });
+        }
+        function updateParticles() {
+            particles = particles.filter(function (p) { p.x += p.vx; p.y += p.vy; p.life--; p.size *= .93; return p.life > 0; });
+        }
+        function renderParticles() {
+            particles.forEach(function (p) {
+                ctx.globalAlpha = Math.min(1, p.life / 20);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(p.x - camX, p.y - camY, p.size, p.size);
+            });
+            ctx.globalAlpha = 1;
+        }
 
-function updateShake(){
-    if(screenShake>0){screenShake--;shakeX=(Math.random()-.5)*screenShake*1.5;shakeY=(Math.random()-.5)*screenShake*1.5;}
-    else{shakeX=shakeY=0;}
-}
+        function updateShake() {
+            if (screenShake > 0) { screenShake--; shakeX = (Math.random() - .5) * screenShake * 1.5; shakeY = (Math.random() - .5) * screenShake * 1.5; }
+            else { shakeX = shakeY = 0; }
+        }
 
-function loop(){if(gameState!=='playing')return;update();render();requestAnimationFrame(loop);}
+        function loop() { if (gameState !== 'playing') return; update(); render(); requestAnimationFrame(loop); }
 
-function update(){
-    updateShake();
-    updateParticles();
-    if(player.attackCd>0)player.attackCd--;
-    if(player.attackFrame>0){
-        player.attackFrame--;
-        if(player.attackFrame===7){
-            enemies.forEach(function(e){
-                var dist=Math.hypot(e.px-player.px,e.py-player.py);
-                if(dist<T*1.6){
-                    e.hp-=25;e.stunTimer=25;e.hitTimer=8;
-                    var ddx=e.px-player.px,ddy=e.py-player.py;
-                    var dd=Math.hypot(ddx,ddy)||1;
-                    e.px+=(ddx/dd)*12;e.py+=(ddy/dd)*12;
-                    score+=10;screenShake=5;
-                    spawnParticles(e.px+T/2,e.py+T/2,'#ff3333',6);
-                    playSound('hit');
+        function update() {
+            updateShake();
+            updateParticles();
+            if (player.attackCd > 0) player.attackCd--;
+            if (player.attackFrame > 0) {
+                player.attackFrame--;
+                if (player.attackFrame === 7) {
+                    enemies.forEach(function (e) {
+                        var dist = Math.hypot(e.px - player.px, e.py - player.py);
+                        if (dist < T * 1.6) {
+                            e.hp -= 25; e.stunTimer = 25; e.hitTimer = 8;
+                            var ddx = e.px - player.px, ddy = e.py - player.py;
+                            var dd = Math.hypot(ddx, ddy) || 1;
+                            e.px += (ddx / dd) * 12; e.py += (ddy / dd) * 12;
+                            score += 10; screenShake = 5;
+                            spawnParticles(e.px + T / 2, e.py + T / 2, '#ff3333', 6);
+                            playSound('hit');
+                        }
+                    });
+                    enemies = enemies.filter(function (e) {
+                        if (e.hp <= 0) { score += e.type === 'minion' ? 30 : 60; spawnParticles(e.px + T / 2, e.py + T / 2, e.type === 'minion' ? '#aa00ff' : '#6600aa', 12); playSound('kill'); return false; }
+                        return true;
+                    });
+                }
+            }
+            if (keys[' '] && player.attackCd === 0 && player.attackFrame === 0) {
+                player.attackFrame = 15; player.attackCd = 25; playSound('slash');
+            }
+            var dx = 0, dy = 0;
+            if (keys['ArrowLeft'] || keys['a'] || keys['A']) { dx = -player.speed; player.facing = -1; }
+            if (keys['ArrowRight'] || keys['d'] || keys['D']) { dx = player.speed; player.facing = 1; }
+            if (keys['ArrowUp'] || keys['w'] || keys['W']) dy = -player.speed;
+            if (keys['ArrowDown'] || keys['s'] || keys['S']) dy = player.speed;
+            if (player.attackFrame === 0 || player.attackFrame > 10) {
+                var nx = player.px + dx, ny = player.py + dy;
+                var tx = Math.floor((nx + T / 2) / T), ty = Math.floor(player.py / T);
+                if (tx >= 0 && tx < COLS && ty >= 0 && ty < ROWS && map[ty][tx] === 0) player.px = nx;
+                tx = Math.floor(player.px / T); ty = Math.floor((ny + T / 2) / T);
+                if (tx >= 0 && tx < COLS && ty >= 0 && ty < ROWS && map[ty][tx] === 0) player.py = ny;
+            }
+            player.x = Math.floor(player.px / T); player.y = Math.floor(player.py / T);
+            camX = player.px - canvas.width / 2 + T / 2;
+            camY = player.py - canvas.height / 2 + T / 2;
+            camX = Math.max(0, Math.min(camX, COLS * T - canvas.width));
+            camY = Math.max(0, Math.min(camY, ROWS * T - canvas.height));
+            enemies.forEach(function (e) {
+                if (e.hitTimer > 0) e.hitTimer--;
+                if (e.stunTimer > 0) { e.stunTimer--; return; }
+                if (e.attackCd > 0) e.attackCd--;
+                e.moveTimer++;
+                var spd = e.speed;
+                if (e.moveTimer > 20) {
+                    e.moveTimer = 0;
+                    var edx = player.px > e.px ? spd : player.px < e.px ? -spd : 0;
+                    var edy = player.py > e.py ? spd : player.py < e.py ? -spd : 0;
+                    if (edx !== 0) e.facing = edx > 0 ? 1 : -1;
+                    var etx = Math.floor((e.px + edx + T / 2) / T), ety = Math.floor(e.py / T);
+                    if (etx >= 0 && etx < COLS && ety >= 0 && ety < ROWS && map[ety][etx] === 0) e.px += edx;
+                    etx = Math.floor(e.px / T); ety = Math.floor((e.py + edy + T / 2) / T);
+                    if (etx >= 0 && etx < COLS && ety >= 0 && ety < ROWS && map[ety][etx] === 0) e.py += edy;
+                }
+                var dist = Math.hypot(e.px - player.px, e.py - player.py);
+                if (dist < T * .9 && e.attackCd === 0) {
+                    if (player.invTimer <= 0) {
+                        player.hp -= e.dmg; player.invTimer = 30; screenShake = 4;
+                        spawnParticles(player.px + T / 2, player.py + T / 2, '#800000', 5);
+                        playSound('hurt');
+                    }
+                    e.attackCd = 60;
                 }
             });
-            enemies=enemies.filter(function(e){
-                if(e.hp<=0){score+=e.type==='minion'?30:60;spawnParticles(e.px+T/2,e.py+T/2,e.type==='minion'?'#aa00ff':'#6600aa',12);playSound('kill');return false;}
-                return true;
-            });
-        }
-    }
-    if(keys[' ']&&player.attackCd===0&&player.attackFrame===0){
-        player.attackFrame=15;player.attackCd=25;playSound('slash');
-    }
-    var dx=0,dy=0;
-    if(keys['ArrowLeft']||keys['a']||keys['A']){dx=-player.speed;player.facing=-1;}
-    if(keys['ArrowRight']||keys['d']||keys['D']){dx=player.speed;player.facing=1;}
-    if(keys['ArrowUp']||keys['w']||keys['W'])dy=-player.speed;
-    if(keys['ArrowDown']||keys['s']||keys['S'])dy=player.speed;
-    if(player.attackFrame===0||player.attackFrame>10){
-        var nx=player.px+dx,ny=player.py+dy;
-        var tx=Math.floor((nx+T/2)/T),ty=Math.floor(player.py/T);
-        if(tx>=0&&tx<COLS&&ty>=0&&ty<ROWS&&map[ty][tx]===0)player.px=nx;
-        tx=Math.floor(player.px/T);ty=Math.floor((ny+T/2)/T);
-        if(tx>=0&&tx<COLS&&ty>=0&&ty<ROWS&&map[ty][tx]===0)player.py=ny;
-    }
-    player.x=Math.floor(player.px/T);player.y=Math.floor(player.py/T);
-    camX=player.px-canvas.width/2+T/2;
-    camY=player.py-canvas.height/2+T/2;
-    camX=Math.max(0,Math.min(camX,COLS*T-canvas.width));
-    camY=Math.max(0,Math.min(camY,ROWS*T-canvas.height));
-    enemies.forEach(function(e){
-        if(e.hitTimer>0)e.hitTimer--;
-        if(e.stunTimer>0){e.stunTimer--;return;}
-        if(e.attackCd>0)e.attackCd--;
-        e.moveTimer++;
-        var spd=e.speed;
-        if(e.moveTimer>20){
-            e.moveTimer=0;
-            var edx=player.px>e.px?spd:player.px<e.px?-spd:0;
-            var edy=player.py>e.py?spd:player.py<e.py?-spd:0;
-            if(edx!==0)e.facing=edx>0?1:-1;
-            var etx=Math.floor((e.px+edx+T/2)/T),ety=Math.floor(e.py/T);
-            if(etx>=0&&etx<COLS&&ety>=0&&ety<ROWS&&map[ety][etx]===0)e.px+=edx;
-            etx=Math.floor(e.px/T);ety=Math.floor((e.py+edy+T/2)/T);
-            if(etx>=0&&etx<COLS&&ety>=0&&ety<ROWS&&map[ety][etx]===0)e.py+=edy;
-        }
-        var dist=Math.hypot(e.px-player.px,e.py-player.py);
-        if(dist<T*.9&&e.attackCd===0){
-            if(player.invTimer<=0){
-                player.hp-=e.dmg;player.invTimer=30;screenShake=4;
-                spawnParticles(player.px+T/2,player.py+T/2,'#800000',5);
-                playSound('hurt');
+            if (player.invTimer > 0) player.invTimer--;
+            if (enemies.length === 0) {
+                var de = Math.hypot(player.px - exitPos.x * T, player.py - exitPos.y * T);
+                if (de < T) {
+                    gameState = 'levelclear';
+                    document.getElementById('levelClearScreen').style.display = 'flex';
+                    document.getElementById('levelClearScore').textContent = 'SCORE: ' + score;
+                }
             }
-            e.attackCd=60;
+            if (player.hp <= 0) {
+                gameState = 'gameover';
+                document.getElementById('gameOverScreen').style.display = 'flex';
+                document.getElementById('gameOverScore').textContent = 'SCORE: ' + score;
+            }
+            document.getElementById('hudHP').textContent = Math.max(0, player.hp);
+            document.getElementById('hudScore').textContent = score;
+            document.getElementById('hudLevel').textContent = level;
+            document.getElementById('hudEnemies').textContent = enemies.length;
+            document.getElementById('gameMessage').textContent =
+                enemies.length > 0 ? 'DEFEAT ALL ENEMIES ⚔️ (' + enemies.length + ' remaining)' : 'FIND THE EXIT ⬛';
         }
-    });
-    if(player.invTimer>0)player.invTimer--;
-    if(enemies.length===0){
-        var de=Math.hypot(player.px-exitPos.x*T,player.py-exitPos.y*T);
-        if(de<T){
-            gameState='levelclear';
-            document.getElementById('levelClearScreen').style.display='flex';
-            document.getElementById('levelClearScore').textContent='SCORE: '+score;
-        }
-    }
-    if(player.hp<=0){
-        gameState='gameover';
-        document.getElementById('gameOverScreen').style.display='flex';
-        document.getElementById('gameOverScore').textContent='SCORE: '+score;
-    }
-    document.getElementById('hudHP').textContent=Math.max(0,player.hp);
-    document.getElementById('hudScore').textContent=score;
-    document.getElementById('hudLevel').textContent=level;
-    document.getElementById('hudEnemies').textContent=enemies.length;
-    document.getElementById('gameMessage').textContent=
-        enemies.length>0?'DEFEAT ALL ENEMIES ⚔️ ('+enemies.length+' remaining)':'FIND THE EXIT ⬛';
-}
 
-function render(){
-    ctx.fillStyle='#0a0a0a';ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.save();ctx.translate(shakeX,shakeY);
-    ctx.save();ctx.translate(-camX,-camY);
-    for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
-        var x=c*T,y=r*T;
-        if(map[r][c]===1){
-            ctx.fillStyle='#1a0000';ctx.fillRect(x,y,T,T);
-            ctx.strokeStyle='#800000';ctx.lineWidth=1;ctx.strokeRect(x+1,y+1,T-2,T-2);
-            ctx.fillStyle='rgba(128,0,0,0.05)';
-            if(r%2===0){ctx.fillRect(x,y,T/2,T/2);ctx.fillRect(x+T/2,y+T/2,T/2,T/2);}
-        }else{
-            ctx.fillStyle='#0d0d0d';ctx.fillRect(x,y,T,T);
-            ctx.fillStyle='rgba(128,0,0,0.02)';ctx.fillRect(x,y,T/2,T/2);ctx.fillRect(x+T/2,y+T/2,T/2,T/2);
+        function render() {
+            ctx.fillStyle = '#0a0a0a'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.save(); ctx.translate(shakeX, shakeY);
+            ctx.save(); ctx.translate(-camX, -camY);
+            for (var r = 0; r < ROWS; r++)for (var c = 0; c < COLS; c++) {
+                var x = c * T, y = r * T;
+                if (map[r][c] === 1) {
+                    ctx.fillStyle = '#1a0000'; ctx.fillRect(x, y, T, T);
+                    ctx.strokeStyle = '#800000'; ctx.lineWidth = 1; ctx.strokeRect(x + 1, y + 1, T - 2, T - 2);
+                    ctx.fillStyle = 'rgba(128,0,0,0.05)';
+                    if (r % 2 === 0) { ctx.fillRect(x, y, T / 2, T / 2); ctx.fillRect(x + T / 2, y + T / 2, T / 2, T / 2); }
+                } else {
+                    ctx.fillStyle = '#0d0d0d'; ctx.fillRect(x, y, T, T);
+                    ctx.fillStyle = 'rgba(128,0,0,0.02)'; ctx.fillRect(x, y, T / 2, T / 2); ctx.fillRect(x + T / 2, y + T / 2, T / 2, T / 2);
+                }
+            }
+            var ex = exitPos.x * T, ey = exitPos.y * T;
+            if (enemies.length === 0) {
+                ctx.fillStyle = '#00ff88'; ctx.shadowBlur = 20; ctx.shadowColor = '#00ff88';
+                ctx.fillRect(ex + 5, ey + 5, T - 10, T - 10); ctx.shadowBlur = 0;
+                ctx.fillStyle = '#000'; ctx.font = 'bold 18px monospace'; ctx.textAlign = 'center';
+                ctx.fillText('EXIT', ex + T / 2, ey + T / 2 + 6);
+            } else {
+                ctx.fillStyle = '#222'; ctx.fillRect(ex + 5, ey + 5, T - 10, T - 10);
+                ctx.fillStyle = '#555'; ctx.font = '16px monospace'; ctx.textAlign = 'center';
+                ctx.fillText('🔒', ex + T / 2, ey + T / 2 + 6);
+            }
+            enemies.forEach(function (e) {
+                var hr = e.hp / e.maxHp;
+                ctx.fillStyle = '#333'; ctx.fillRect(e.px + 2, e.py - 6, T - 4, 4);
+                ctx.fillStyle = e.type === 'pirate' ? '#aa00ff' : '#6600aa';
+                ctx.fillRect(e.px + 2, e.py - 6, (T - 4) * hr, 4);
+                var spr = e.type === 'pirate' ? (e.hitTimer > 0 ? pirateHitSprite : pirateSprite) : (e.hitTimer > 0 ? minionHitSprite : minionSprite);
+                var sw = spr.width, sh = spr.height;
+                var ox = (T - sw) / 2, oy = (T - sh) / 2;
+                ctx.save();
+                if (e.facing === -1) { ctx.translate(e.px + T / 2, e.py + oy + sh / 2); ctx.scale(-1, 1); ctx.drawImage(spr, -sw / 2, -sh / 2); }
+                else ctx.drawImage(spr, e.px + ox, e.py + oy);
+                ctx.restore();
+                if (e.stunTimer > 0 && e.stunTimer % 4 < 2) {
+                    ctx.fillStyle = '#ff0'; ctx.font = '10px monospace';
+                    ctx.fillText('★', e.px + 5, e.py - 8); ctx.fillText('★', e.px + T - 10, e.py - 10);
+                }
+                ctx.fillStyle = e.type === 'pirate' ? 'rgba(170,0,255,0.6)' : 'rgba(100,0,150,0.5)';
+                ctx.font = '7px monospace'; ctx.textAlign = 'center';
+                ctx.fillText(e.type === 'pirate' ? 'VOID PIRATE' : 'MINION', e.px + T / 2, e.py + T + 10);
+            });
+            var px = player.px, py = player.py;
+            var phr = player.hp / player.maxHp;
+            ctx.fillStyle = '#333'; ctx.fillRect(px + 2, py - 8, T - 4, 5);
+            ctx.fillStyle = phr > .5 ? '#800000' : '#cc0000';
+            ctx.fillRect(px + 2, py - 8, (T - 4) * phr, 5);
+            if (player.attackFrame > 0) {
+                var prog = 1 - player.attackFrame / 15;
+                var startA = player.facing === 1 ? -Math.PI * .7 : Math.PI + .3;
+                var endA = startA + (player.facing === 1 ? 1 : -1) * Math.PI * 1.4 * prog;
+                ctx.beginPath(); ctx.arc(px + T / 2, py + T / 2, T * .9, startA, endA);
+                ctx.strokeStyle = 'rgba(128,0,0,' + (0.7 - prog * .7) + ')'; ctx.lineWidth = 6; ctx.stroke();
+                ctx.beginPath(); ctx.arc(px + T / 2, py + T / 2, T * .7, startA, endA);
+                ctx.strokeStyle = 'rgba(255,50,50,' + (0.8 - prog * .8) + ')'; ctx.lineWidth = 2; ctx.stroke();
+                ctx.beginPath(); ctx.arc(px + T / 2, py + T / 2, T * .5, startA, endA);
+                ctx.strokeStyle = 'rgba(255,200,200,' + (0.5 - prog * .5) + ')'; ctx.lineWidth = 1; ctx.stroke();
+            }
+            var pSpr = (player.invTimer > 0 && player.invTimer % 4 < 2) ? sonyHitSprite : sonySprite;
+            var psw = pSpr.width, psh = pSpr.height;
+            var pox = (T - psw) / 2, poy = (T - psh) / 2;
+            var lungeX = 0;
+            if (player.attackFrame > 5 && player.attackFrame < 12) lungeX = player.facing * 5;
+            ctx.save();
+            if (player.facing === -1) { ctx.translate(px + T / 2 + lungeX, py + poy + psh / 2); ctx.scale(-1, 1); ctx.drawImage(pSpr, -psw / 2, -psh / 2); }
+            else ctx.drawImage(pSpr, px + pox + lungeX, py + poy);
+            ctx.restore();
+            ctx.fillStyle = 'rgba(128,0,0,0.5)'; ctx.font = '7px monospace'; ctx.textAlign = 'center';
+            ctx.fillText('SONY', px + T / 2, py + T + 10);
+            renderParticles();
+            ctx.restore();
+            ctx.restore();
         }
-    }
-    var ex=exitPos.x*T,ey=exitPos.y*T;
-    if(enemies.length===0){
-        ctx.fillStyle='#00ff88';ctx.shadowBlur=20;ctx.shadowColor='#00ff88';
-        ctx.fillRect(ex+5,ey+5,T-10,T-10);ctx.shadowBlur=0;
-        ctx.fillStyle='#000';ctx.font='bold 18px monospace';ctx.textAlign='center';
-        ctx.fillText('EXIT',ex+T/2,ey+T/2+6);
-    }else{
-        ctx.fillStyle='#222';ctx.fillRect(ex+5,ey+5,T-10,T-10);
-        ctx.fillStyle='#555';ctx.font='16px monospace';ctx.textAlign='center';
-        ctx.fillText('🔒',ex+T/2,ey+T/2+6);
-    }
-    enemies.forEach(function(e){
-        var hr=e.hp/e.maxHp;
-        ctx.fillStyle='#333';ctx.fillRect(e.px+2,e.py-6,T-4,4);
-        ctx.fillStyle=e.type==='pirate'?'#aa00ff':'#6600aa';
-        ctx.fillRect(e.px+2,e.py-6,(T-4)*hr,4);
-        var spr=e.type==='pirate'?(e.hitTimer>0?pirateHitSprite:pirateSprite):(e.hitTimer>0?minionHitSprite:minionSprite);
-        var sw=spr.width,sh=spr.height;
-        var ox=(T-sw)/2,oy=(T-sh)/2;
-        ctx.save();
-        if(e.facing===-1){ctx.translate(e.px+T/2,e.py+oy+sh/2);ctx.scale(-1,1);ctx.drawImage(spr,-sw/2,-sh/2);}
-        else ctx.drawImage(spr,e.px+ox,e.py+oy);
-        ctx.restore();
-        if(e.stunTimer>0&&e.stunTimer%4<2){
-            ctx.fillStyle='#ff0';ctx.font='10px monospace';
-            ctx.fillText('★',e.px+5,e.py-8);ctx.fillText('★',e.px+T-10,e.py-10);
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js');
         }
-        ctx.fillStyle=e.type==='pirate'?'rgba(170,0,255,0.6)':'rgba(100,0,150,0.5)';
-        ctx.font='7px monospace';ctx.textAlign='center';
-        ctx.fillText(e.type==='pirate'?'VOID PIRATE':'MINION',e.px+T/2,e.py+T+10);
-    });
-    var px=player.px,py=player.py;
-    var phr=player.hp/player.maxHp;
-    ctx.fillStyle='#333';ctx.fillRect(px+2,py-8,T-4,5);
-    ctx.fillStyle=phr>.5?'#800000':'#cc0000';
-    ctx.fillRect(px+2,py-8,(T-4)*phr,5);
-    if(player.attackFrame>0){
-        var prog=1-player.attackFrame/15;
-        var startA=player.facing===1?-Math.PI*.7:Math.PI+.3;
-        var endA=startA+(player.facing===1?1:-1)*Math.PI*1.4*prog;
-        ctx.beginPath();ctx.arc(px+T/2,py+T/2,T*.9,startA,endA);
-        ctx.strokeStyle='rgba(128,0,0,'+(0.7-prog*.7)+')';ctx.lineWidth=6;ctx.stroke();
-        ctx.beginPath();ctx.arc(px+T/2,py+T/2,T*.7,startA,endA);
-        ctx.strokeStyle='rgba(255,50,50,'+(0.8-prog*.8)+')';ctx.lineWidth=2;ctx.stroke();
-        ctx.beginPath();ctx.arc(px+T/2,py+T/2,T*.5,startA,endA);
-        ctx.strokeStyle='rgba(255,200,200,'+(0.5-prog*.5)+')';ctx.lineWidth=1;ctx.stroke();
-    }
-    var pSpr=(player.invTimer>0&&player.invTimer%4<2)?sonyHitSprite:sonySprite;
-    var psw=pSpr.width,psh=pSpr.height;
-    var pox=(T-psw)/2,poy=(T-psh)/2;
-    var lungeX=0;
-    if(player.attackFrame>5&&player.attackFrame<12)lungeX=player.facing*5;
-    ctx.save();
-    if(player.facing===-1){ctx.translate(px+T/2+lungeX,py+poy+psh/2);ctx.scale(-1,1);ctx.drawImage(pSpr,-psw/2,-psh/2);}
-    else ctx.drawImage(pSpr,px+pox+lungeX,py+poy);
-    ctx.restore();
-    ctx.fillStyle='rgba(128,0,0,0.5)';ctx.font='7px monospace';ctx.textAlign='center';
-    ctx.fillText('SONY',px+T/2,py+T+10);
-    renderParticles();
-    ctx.restore();
-    ctx.restore();
-}
-</script>
+    </script>
 
 </body>
 </html>
